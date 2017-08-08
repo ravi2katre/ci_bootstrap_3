@@ -15,28 +15,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['ci_bootstrap'] = array(
 
 	// Site name
-	'site_name' => 'CI Bootstrap 3',
+	'site_name' => 'School Management',
 
 	// Default page title prefix
 	'page_title_prefix' => '',
 
 	// Default page title
-	'page_title' => '',
+	'page_title' => 'School Management',
 
 	// Default meta data
 	'meta_data'	=> array(
-		'author'		=> '',
-		'description'	=> '',
-		'keywords'		=> ''
+		'author'		=> 'School Management',
+		'description'	=> 'School Management',
+		'keywords'		=> 'School Management'
 	),
 
 	// Default scripts to embed at page head or end
 	'scripts' => array(
 		'head'	=> array(
+            'https://js.pusher.com/4.1/pusher.min.js'
 		),
 		'foot'	=> array(
 			'assets/dist/frontend/lib.min.js',
-			'assets/dist/frontend/app.min.js'
+			'assets/dist/frontend/app.min.js',
+
 		),
 	),
 
@@ -52,7 +54,7 @@ $config['ci_bootstrap'] = array(
 	'body_class' => '',
 	
 	// Multilingual settings
-	'languages' => array(
+	/*'languages' => array(
 		'default'		=> 'en',
 		'autoload'		=> array('general'),
 		'available'		=> array(
@@ -73,7 +75,7 @@ $config['ci_bootstrap'] = array(
 				'value' => 'spanish'
 			)
 		)
-	),
+	),*/
 
 	// Google Analytics User ID
 	'ga_id' => '',

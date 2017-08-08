@@ -8,3 +8,24 @@
 	ga('send', 'pageview');
 </script>
 <?php endif; ?>
+
+<script>
+    //alert("ddd")
+        //console.log("DOM fully loaded and parsed");
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('464fe91876e8af33346d', {
+            cluster: 'ap2',
+            encrypted: false
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+            alert(data.message);
+
+        });
+
+</script>
+<?php $this->system_message->render(); ?>
