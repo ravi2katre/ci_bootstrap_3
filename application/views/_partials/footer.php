@@ -11,3 +11,4 @@
 		<p class="text-muted">&copy; <strong><?php echo date('Y'); ?></strong> All rights reserved.</p>
 	</div>
 </div>
+
