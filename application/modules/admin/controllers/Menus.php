@@ -55,7 +55,7 @@ class Menus extends Admin_Controller{
               'name' => $this->input->post('name'),
               'icon' => $this->input->post('icon'),
               'url' => $this->input->post('url'),
-
+              'parent_id' => $this->input->post('parent_id'),
           );
       $insert = $this->Menus_model->save($data);
       $this->render_json(array("status" => TRUE));
@@ -68,6 +68,7 @@ class Menus extends Admin_Controller{
           'name' => $this->input->post('name'),
           'icon' => $this->input->post('icon'),
           'url' => $this->input->post('url'),
+          'parent_id' => $this->input->post('parent_id'),
           );
       $this->Menus_model->update(array('menu_id' => $this->input->post('menu_id')), $data);
       $this->render_json(array("status" => TRUE));

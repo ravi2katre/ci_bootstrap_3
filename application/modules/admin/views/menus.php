@@ -177,6 +177,7 @@ function edit_menu(id)
             $('[name="name"]').val(data.name);
             $('[name="url"]').val(data.url);
             $('[name="icon"]').val(data.icon);
+            $('[name="parent_id"]').val(data.parent_id);
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit'); // Set title to Bootstrap modal title
 
@@ -350,20 +351,20 @@ function deleteList()
                             </div>
                         </div>
 
-                        <!--div class="form-group">
-                            <label class="control-label col-md-3">Course</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Parent Menu</label>
                             <div class="col-md-9">
-                                <select name="carr_nombre" class="form-control">
-                                    <option value="">--Select course--</option>
+                                <select name="parent_id" class="form-control">
+                                    <option value="">--Select Menu--</option>
                                     <?php
-                                    //foreach($list as $value){
-                                      //echo '<option value="'.$value->carr_id.'">'.$value->carr_nombre.'</option>';
-                                   // }
+                                    foreach($list as $value){
+                                      echo '<option value="'.$value->menu_id.'">'.$value->name.'</option>';
+                                    }
                                     ?>
                                 </select>
                                 <span class="help-block"></span>
                             </div>
-                        </div-->
+                        </div>
                     </div>
                 </form>
             </div>
