@@ -39,13 +39,13 @@ class Menus extends Admin_Controller{
                       "data" => $data,
               );
       //output to json format
-      echo json_encode($output);
+      $this->render_json($output);
   }
 
   public function ajax_edit($id)
   {
       $data = $this->Menus_model->get_by_id($id);
-      echo json_encode($data);
+      $this->render_json($data);
   }
 
   public function ajax_add()
@@ -58,7 +58,7 @@ class Menus extends Admin_Controller{
 
           );
       $insert = $this->Menus_model->save($data);
-      echo json_encode(array("status" => TRUE));
+      $this->render_json(array("status" => TRUE));
   }
 
   public function ajax_update()
@@ -70,13 +70,13 @@ class Menus extends Admin_Controller{
           'url' => $this->input->post('url'),
           );
       $this->Menus_model->update(array('menu_id' => $this->input->post('menu_id')), $data);
-      echo json_encode(array("status" => TRUE));
+      $this->render_json(array("status" => TRUE));
   }
 
   public function ajax_delete($id)
   {
       $this->Menus_model->delete_by_id($id);
-      echo json_encode(array("status" => TRUE));
+      $this->render_json(array("status" => TRUE));
   }
 
   public function ajax_list_delete()
@@ -85,7 +85,7 @@ class Menus extends Admin_Controller{
        foreach ($list_id as $id) {
            $this->Menus_model->delete_by_id($id);
        }
-       echo json_encode(array("status" => TRUE));
+       $this->render_json(array("status" => TRUE));
    }
 
   private function _validate()
@@ -120,7 +120,7 @@ class Menus extends Admin_Controller{
 
       if($data['status'] === FALSE)
       {
-          echo json_encode($data);
+          $this->render_json($data);
           exit();
       }
   }
