@@ -18,7 +18,7 @@ class Menus extends Admin_Controller{
   {
       $list = $this->Menus_model->get_datatables();
       $data = array();
-      $no = $_POST['start'];
+      $no = $this->input->post('start');
       foreach ($list as $menus) {
           $no++;
           $row = array();
@@ -33,7 +33,7 @@ class Menus extends Admin_Controller{
           $data[] = $row;
       }
       $output = array(
-                      "draw" => $_POST['draw'],
+                      "draw" => $this->input->post('draw'),
                       "recordsTotal" => $this->Menus_model->count_all(),
                       "recordsFiltered" => $this->Menus_model->count_filtered(),
                       "data" => $data,

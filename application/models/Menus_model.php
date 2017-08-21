@@ -27,16 +27,16 @@ class Menus_model extends CI_Model {
         $i = 0;
         foreach ($this->column as $item) // loop column
         {
-            if($_POST['search']['value']) // if datatable send POST for search
+            if($this->input->post('search[value]')) // if datatable send POST for search
             {
                 if($i===0) // first loop
                 {
                     $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
-                    $this->db->like($item, $_POST['search']['value']);
+                    $this->db->like($item, $this->input->post('search[value]'));
                 }
                 else
                 {
-                    $this->db->or_like($item, $_POST['search']['value']);
+                    $this->db->or_like($item, $this->input->post('search[value]'));
                 }
                 if(count($this->column) - 1 == $i) //last loop
                     $this->db->group_end(); //close bracket
@@ -44,9 +44,9 @@ class Menus_model extends CI_Model {
             $column[$i] = $item; // set column array variable to order processing
             $i++;
         }
-        if(isset($_POST['order'])) // here order processing
+        if($this->input->post('order')) // here order processing
         {
-            $this->db->order_by($column[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+            $this->db->order_by($column[$this->input->post('order[0][column]')], $this->input->post('order[0][dir]'));
         }
         else if(isset($this->order))
         {
@@ -58,8 +58,8 @@ class Menus_model extends CI_Model {
     function get_datatables()
     {
         $this->_get_datatables_query();
-        if($_POST['length'] != -1)
-        $this->db->limit($_POST['length'], $_POST['start']);
+        if($this->input->post('length') != -1)
+        $this->db->limit($this->input->post('length'), $this->input->post('start'));
         $query = $this->db->get();
         return $query->result();
     }
