@@ -282,7 +282,7 @@ function deleteList()
             $.ajax({
                 type: "POST",
                 data: {id:list_id},
-                url: "index.php/menu/ajax_list_delete",
+                url: "menus/ajax_list_delete",
                 dataType: "JSON",
                 success: function(data)
                 {
