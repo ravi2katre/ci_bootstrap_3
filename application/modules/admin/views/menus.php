@@ -1,79 +1,34 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CRUD Student management</title>
-    <link rel="icon" href="http://school-management.localhost/images/favicon.png">
-    <link href="http://school-management.localhost/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://school-management.localhost/assets/datatables/css/dataTables.bootstrap.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    </head>
-<body>
+<div class="container_list" >
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" style="color:#fff" href="http://school-management.localhost/">Home</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav ">
-            <li><a href="http://eleonsolar.com">About me</a></li>
-          </ul>
-          <div class="nav navbar-nav navbar-right">
-            <li><a href="https://github.com/eleonsolar/crud-demo" style="color:#F3F3F3">Github (Source code)</a></li>
-          </div>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+    <button class="btn btn-success" onclick="add_menu()"><i class="glyphicon glyphicon-plus"></i>Add</button>
+    <button class="btn btn-default" onclick="reloadTable()"><i class="glyphicon glyphicon-refresh"></i>Reload</button>
+    <button id="deleteList" class="btn btn-danger" style="display: none;" onclick="deleteList()"><i class="glyphicon glyphicon-trash"></i>Delete list</button>
+    <br />
+    <br />
+    <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="check-all"></th>
+                <th>Name</th>
+                <th>Url</th>
+                <th>Icon</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Url</th>
+                <th>Icon</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 
-    <div class="container" style="margin-top:60px">
-        <h2>Ajax CRUD Codeigniter with Bootstrap modals and Datatables</h2>
-        <h3 style="text-decoration:underline">Students</h3>
-        <button class="btn btn-success" onclick="add_menu()"><i class="glyphicon glyphicon-plus"></i>Add Student</button>
-        <button class="btn btn-default" onclick="reloadTable()"><i class="glyphicon glyphicon-refresh"></i>Reload</button>
-        <button id="deleteList" class="btn btn-danger" style="display: none;" onclick="deleteList()"><i class="glyphicon glyphicon-trash"></i>Delete list</button>
-        <br />
-        <br />
-        <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" id="check-all"></th>
-                    <th>Name</th>
-                    <th>Url</th>
-                    <th>Icon</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Url</th>
-                    <th>Icon</th>
-                    <th>Action</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-<script src="http://school-management.localhost/assets/jquery/jquery.js"></script>
-<script src="http://school-management.localhost/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="http://school-management.localhost/assets/datatables/js/jquery.dataTables.min.js"></script>
-<script src="http://school-management.localhost/assets/datatables/js/dataTables.bootstrap.js"></script>
 <script type="text/javascript">
 
 var save_method; //for save method string
@@ -376,5 +331,3 @@ function deleteList()
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- End Bootstrap modal -->
-</body>
-</html>

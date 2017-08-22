@@ -104,3 +104,17 @@ function redirect_referrer()
 {
 	redirect(referrer());
 }
+
+function admin_menus(){
+    $ci =& get_instance();
+    $ci->db->from('menus');
+    //$ci->db->where('menu_id',$id);
+    $query = $ci->db->get();
+    $menus = array();
+    foreach($query->result_array() as $key=>$val){
+        $menus[$val['name']] = $val;
+    }
+
+    return $menus;
+    //return $ci->Menus_model->get_rows();
+}
