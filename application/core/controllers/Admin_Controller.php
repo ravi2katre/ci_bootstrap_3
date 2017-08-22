@@ -32,7 +32,8 @@ class Admin_Controller extends MY_Controller {
 
 		// additional view data
 		$this->mViewData['useful_links'] = $this->mUsefulLinks;
-
+        //$this->mMenu = $config['menu'] = $this->mViewData['menu'] = admin_menus();
+        //print_r($this->mMenu);
 		parent::render($view_file, $layout);
 	}
 

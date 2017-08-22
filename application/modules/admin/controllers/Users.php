@@ -1,10 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Menus extends Admin_Controller{
-
-  public function __construct()
+class Users extends Admin_Controller{
+    var $table = 'users';
+    var $primary_key_field = 'id';
+    var $model_name = 'Users_model';
+    public function __construct()
   {
       parent::__construct();
-      $this->load->model('Menus_model');
+      $this->load->model($this->model_name);
       $this->add_stylesheet(BASE_URL.'assets/bootstrap/css/bootstrap.min.css',true,'screen');
       $this->add_stylesheet(BASE_URL.'assets/datatables/css/dataTables.bootstrap.css',true,'screen');
 
@@ -12,37 +14,39 @@ class Menus extends Admin_Controller{
       //$this->add_script(BASE_URL.'assets/bootstrap/js/bootstrap.min.js',true,'foot');
       $this->add_script(BASE_URL.'assets/datatables/js/jquery.dataTables.min.js',true,'foot');
       $this->add_script(BASE_URL.'assets/datatables/js/dataTables.bootstrap.js',true,'foot');
+      $this->mViewData['primary_key_field'] = $this->primary_key_field;
+
   }
 
   public function index()
   {
       $this->load->helper('url');
-      $this->mViewData['list'] = $this->Menus_model->get_rows();
-      $this->render('menus');
+      $this->mViewData['list'] = $this->{$this->model_name}->get_rows();
+      $this->render('users/list');
   }
 
   public function ajax_list()
   {
-      $list = $this->Menus_model->get_datatables();
+      $list = $this->{$this->model_name}->get_datatables();
       $data = array();
       $no = $this->input->post('start');
       foreach ($list as $menus) {
           $no++;
           $row = array();
-          $row[] = '<input type="checkbox" class="data-check" value="'.$menus->menu_id.'" onclick="showBottomDelete()"/>';
-          $row[] = $menus->name;
-          $row[] = $menus->url;
-          $row[] = $menus->icon;
+          $row[] = '<input type="checkbox" class="data-check" value="'.$menus->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
+          $row[] = $menus->first_name;
+          $row[] = $menus->email;
+
 
           //add html for action
-          $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_menu('."'".$menus->menu_id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-                <a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick="delete_menu('."'".$menus->menu_id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+          $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_menu('."'".$menus->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                <a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick="delete_menu('."'".$menus->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
           $data[] = $row;
       }
       $output = array(
                       "draw" => $this->input->post('draw'),
-                      "recordsTotal" => $this->Menus_model->count_all(),
-                      "recordsFiltered" => $this->Menus_model->count_filtered(),
+                      "recordsTotal" => $this->{$this->model_name}->count_all(),
+                      "recordsFiltered" => $this->{$this->model_name}->count_filtered(),
                       "data" => $data,
               );
       //output to json format
@@ -51,7 +55,7 @@ class Menus extends Admin_Controller{
 
   public function ajax_edit($id)
   {
-      $data = $this->Menus_model->get_by_id($id);
+      $data = $this->{$this->model_name}->get_by_id($id);
       $this->render_json($data);
   }
 
@@ -64,7 +68,7 @@ class Menus extends Admin_Controller{
               'url' => $this->input->post('url'),
               'parent_id' => $this->input->post('parent_id'),
           );
-      $insert = $this->Menus_model->save($data);
+      $insert = $this->{$this->model_name}->save($data);
       $this->render_json(array("status" => TRUE));
   }
 
@@ -77,13 +81,13 @@ class Menus extends Admin_Controller{
           'url' => $this->input->post('url'),
           'parent_id' => $this->input->post('parent_id'),
           );
-      $this->Menus_model->update(array('menu_id' => $this->input->post('menu_id')), $data);
+      $this->{$this->model_name}->update(array('{$this->primary_key_field}' => $this->input->post($this->primary_key_field)), $data);
       $this->render_json(array("status" => TRUE));
   }
 
   public function ajax_delete($id)
   {
-      $this->Menus_model->delete_by_id($id);
+      $this->{$this->model_name}->delete_by_id($id);
       $this->render_json(array("status" => TRUE));
   }
 
@@ -91,7 +95,7 @@ class Menus extends Admin_Controller{
    {
        $list_id = $this->input->post('id');
        foreach ($list_id as $id) {
-           $this->Menus_model->delete_by_id($id);
+           $this->{$this->model_name}->delete_by_id($id);
        }
        $this->render_json(array("status" => TRUE));
    }
@@ -108,6 +112,15 @@ class Menus extends Admin_Controller{
           $data['inputerror'][] = 'name';
           $data['error_string'][] = 'First name is required';
           $data['status'] = FALSE;
+      }else{
+
+        if(!$this->_validate_string($this->input->post('icon')))
+        {
+          $data['inputerror'][] = 'icon';
+          $data['error_string'][] = 'Invalid value';
+          $data['status'] = FALSE;
+        }
+
       }
 
       if($this->input->post('url') == '')
