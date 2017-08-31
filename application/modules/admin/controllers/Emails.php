@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Users extends Admin_Controller{
-    var $table = 'users';
+class Emails extends Admin_Controller{
+    var $table = 'emails';
     var $primary_key_field = 'id';
-    var $model_name = 'Users_model';
+    var $model_name = 'Emails_model';
     public function __construct()
   {
       parent::__construct();
@@ -34,8 +34,8 @@ class Users extends Admin_Controller{
           $no++;
           $row = array();
           $row[] = '<input type="checkbox" class="data-check" value="'.$item->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
-          $row[] = $item->first_name;
-          $row[] = $item->email;
+          $row[] = $item->title;
+          $row[] = $item->subject;
 
 
           //add html for action
@@ -63,18 +63,8 @@ class Users extends Admin_Controller{
   {
       $this->_validate();
       $data = map_column_with_array_key($this->table,$this->input->post('detail'));
-      //$insert = $this->{$this->model_name}->save($data);
-
-      $output = $this->ion_auth->register($data['email'],$data['password'],$data['email'],$data,array(1));
-
-      if($output){
-
-          $this->render_json(array("status" => TRUE));
-      }else{
-
-          $this->render_json(array("status" => FALSE));
-      }
-
+      $insert = $this->{$this->model_name}->save($data);
+      $this->render_json(array("status" => TRUE));
   }
 
   public function ajax_update()
@@ -108,7 +98,7 @@ class Users extends Admin_Controller{
 
       $this->form_validation->set_rules('detail[first_name]', 'first_name', 'required');
       $this->form_validation->set_rules('detail[last_name]', 'last_name', 'required');
-      $this->form_validation->set_rules('detail[email]', 'Email', 'required|check_unique_user');
+      $this->form_validation->set_rules('detail[email]', 'Email', 'required|is_unique[users.email]');
       $this->form_validation->set_rules('detail[password]', 'Password', 'required|matches[password_confirm]');
       $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
 
@@ -131,16 +121,5 @@ class Users extends Admin_Controller{
       }
   }
 
-    function check_unique_user() {
-        $condition[$this->primary_key_field." !="] =$this->input->post($this->primary_key_field);
-        $condition['email'] =$this->input->post('email');
-        $condition = array_filter($condition);
-        $result = $this->db->get_where('users',$condition)->result_array();
-        if(array_key_exists('email',$result)) {
-            return false;
-        }else{
-            return true;
-        }
 
-    }
 }

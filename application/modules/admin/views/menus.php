@@ -10,6 +10,7 @@
             <tr>
                 <th><input type="checkbox" id="check-all"></th>
                 <th>Name</th>
+                <th>Parent</th>
                 <th>Url</th>
                 <th>Icon</th>
                 <th>Action</th>
@@ -21,6 +22,7 @@
             <tr>
                 <th></th>
                 <th>Name</th>
+                <th>Parent</th>
                 <th>Url</th>
                 <th>Icon</th>
                 <th>Action</th>
@@ -110,7 +112,7 @@ function add_menu()
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Add student'); // Set Title to Bootstrap modal title
+    $('.modal-title').text('Add'); // Set Title to Bootstrap modal title
 }
 
 function edit_menu(id)
@@ -202,7 +204,7 @@ function save()
 
 function delete_menu(id)
 {
-    if(confirm('Are you sure to remove the student?'))
+    if(confirm('Are you sure to remove the row?'))
     {
         // ajax delete data to database
         $.ajax({
@@ -314,6 +316,21 @@ function deleteList()
                                     <?php
                                     foreach($list as $value){
                                       echo '<option value="'.$value->menu_id.'">'.$value->name.'</option>';
+                                    }
+                                    ?>
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Roles</label>
+                            <div class="col-md-9">
+                                <select name="parent_id" class="form-control">
+                                    <option value="">--Select Menu--</option>
+                                    <?php
+                                    foreach($list as $value){
+                                        echo '<option value="'.$value->menu_id.'">'.$value->name.'</option>';
                                     }
                                     ?>
                                 </select>

@@ -1,9 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Menus_model extends CI_Model {
+class Emails_model extends CI_Model {
 
-    var $table = 'menus';
-    var $column = array('t1.name','t1.url','t1.icon'); //set column field database for order and search
-    var $order = array('menu_id' => 'desc'); // default order
+    var $table = 'emails';
+    var $primary_key_field = 'id';
+    var $column = array('title','subject','mail_from','mail_from_name','mail_to'); //set column field database for order and search
+    var $order = array('id' => 'desc'); // default order
 
     function __construct()
     {
@@ -13,18 +14,16 @@ class Menus_model extends CI_Model {
 
     public function get_rows()
     {
-
         $this->db->from($this->table);
-        $this->db->order_by('menu_id', 'ASC');
+        $this->db->order_by($this->primary_key_field, 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
     private function _get_datatables_query()
     {
-        $this->db->select('t1.*,t2.name as parent_menu');
-        $this->db->from($this->table." t1");
-        $this->db->join($this->table." t2", 't1.parent_id = t2.menu_id','left');
+        $this->db->select($this->primary_key_field.',title,subject');
+        $this->db->from($this->table);
 
         $i = 0;
         foreach ($this->column as $item) // loop column
@@ -82,7 +81,7 @@ class Menus_model extends CI_Model {
     public function get_by_id($id)
     {
         $this->db->from($this->table);
-        $this->db->where('menu_id',$id);
+        $this->db->where($this->primary_key_field,$id);
         $query = $this->db->get();
 
         return $query->row();
@@ -102,7 +101,7 @@ class Menus_model extends CI_Model {
 
     public function delete_by_id($id)
     {
-        $this->db->where('menu_id', $id);
+        $this->db->where($this->primary_key_field, $id);
         $this->db->delete($this->table);
     }
 

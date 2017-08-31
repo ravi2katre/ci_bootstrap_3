@@ -25,4 +25,6 @@ class MY_Form_validation extends CI_Form_validation {
 			? ($this->CI->db->limit(1)->get_where($table, array($field => $str))->num_rows() === 1)
 			: FALSE;
 	}
+
+
 }

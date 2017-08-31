@@ -23,9 +23,13 @@ application/composer.lock
 
 ## Source map files (local gulp tasks will still produce .map for debug use) ###
 *.map
-*/.idea/*
+*.idea
 ### SQL backup files ###
 sql/backup/*
 sql/backup/!index.html
-/gulpfile.js/
-/.gitignore
+uploads/
+application/config/database.php
+application/cache
+/application/config/testing/database.php
+/sql/
+!/sql/

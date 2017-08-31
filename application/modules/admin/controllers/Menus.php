@@ -31,6 +31,7 @@ class Menus extends Admin_Controller{
           $row = array();
           $row[] = '<input type="checkbox" class="data-check" value="'.$menus->menu_id.'" onclick="showBottomDelete()"/>';
           $row[] = $menus->name;
+          $row[] = $menus->parent_menu;
           $row[] = $menus->url;
           $row[] = $menus->icon;
 
