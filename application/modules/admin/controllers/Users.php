@@ -64,7 +64,7 @@ class Users extends Admin_Controller{
       $this->_validate();
       $data = map_column_with_array_key($this->table,$this->input->post('detail'));
       //$insert = $this->{$this->model_name}->save($data);
-
+      $data['username'] = $data['email'];
       $output = $this->ion_auth->register($data['email'],$data['password'],$data['email'],$data,array(1));
 
       if($output){
@@ -81,7 +81,10 @@ class Users extends Admin_Controller{
   {
       $this->_validate();
       $data = map_column_with_array_key($this->table,$this->input->post('detail'));
-      $this->{$this->model_name}->update(array('{$this->primary_key_field}' => $this->input->post($this->primary_key_field)), $data);
+      $data['username'] = $data['email'];
+      //$this->{$this->model_name}->update(array("{$this->primary_key_field}" => $this->input->post($this->primary_key_field)), $data);
+      $this->load->model('Ion_auth_model');
+      $this->Ion_auth_model->update($this->input->post($this->primary_key_field),$data);
       $this->render_json(array("status" => TRUE));
   }
 
@@ -108,7 +111,25 @@ class Users extends Admin_Controller{
 
       $this->form_validation->set_rules('detail[first_name]', 'first_name', 'required');
       $this->form_validation->set_rules('detail[last_name]', 'last_name', 'required');
-      $this->form_validation->set_rules('detail[email]', 'Email', 'required|check_unique_user');
+      $this->form_validation->set_rules('detail[email]', 'Email', array('required', array('validate_username', function($email){
+          //return false;
+          $condition['id !='] = $this->input->post('id');
+          $condition['email'] = $email;
+          $condition = array_filter($condition);
+          //cidb($condition );
+          $result = $this->db->get_where($this->table, $condition)->row_array();
+          //cidb($result);exit;
+
+          if(is_array($result) && array_key_exists('email', $result))
+          {
+              $this->form_validation->set_message('validate_username', 'The  field must contain a unique value.');
+              return FALSE;
+          }else
+          {
+              return TRUE;
+          }
+          // Check $value
+      })));
       $this->form_validation->set_rules('detail[password]', 'Password', 'required|matches[password_confirm]');
       $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
 
@@ -131,16 +152,5 @@ class Users extends Admin_Controller{
       }
   }
 
-    function check_unique_user() {
-        $condition[$this->primary_key_field." !="] =$this->input->post($this->primary_key_field);
-        $condition['email'] =$this->input->post('email');
-        $condition = array_filter($condition);
-        $result = $this->db->get_where('users',$condition)->result_array();
-        if(array_key_exists('email',$result)) {
-            return false;
-        }else{
-            return true;
-        }
 
-    }
 }
