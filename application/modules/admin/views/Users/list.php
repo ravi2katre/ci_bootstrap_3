@@ -5,6 +5,39 @@
     <button id="deleteList" class="btn btn-danger" style="display: none;" onclick="deleteList()"><i class="glyphicon glyphicon-trash"></i>Delete list</button>
     <br />
     <br />
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" >Custom Filter : </h3>
+        </div>
+        <div class="panel-body">
+            <form id="form-filter" class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="FirstName" class="col-sm-2 control-label">First name</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="first_name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="LastName" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-4">
+                        <button type="button" id="btn-filter" class="btn btn-primary">Filter</button>
+                        <button type="button" id="btn-reset" class="btn btn-default">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
     <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
         <tr>
@@ -14,6 +47,7 @@
             <th>Action</th>
         </tr>
         </thead>
+
         <tbody>
         </tbody>
         <tfoot>
@@ -44,7 +78,11 @@
             // Load data for the table's content from an Ajax source
             "ajax": {
                 "url": "<?php echo $ctrler; ?>/ajax_list",
-                "type": "POST"
+                "type": "POST",
+                "data": function ( data ) {
+                    data.first_name = $('#first_name').val();
+                    data.email = $('#email').val();
+                }
             },
 
             //Set column definition initialisation properties.
@@ -245,6 +283,25 @@
         }
     }
 
+</script>
+
+<script>
+    $(document).ready(function() {
+
+
+        $(document).ready(function() {
+            $('#btn-filter').click(function(){ //button filter event click
+                table.ajax.reload();  //just reload table
+            });
+            $('#btn-reset').click(function(){ //button reset event click
+                $('#form-filter')[0].reset();
+                table.ajax.reload();  //just reload table
+            });
+
+        });
+
+
+    });
 </script>
 
 <!-- Bootstrap modal -->

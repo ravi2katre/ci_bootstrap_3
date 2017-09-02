@@ -27,9 +27,7 @@ application/composer.lock
 ### SQL backup files ###
 sql/backup/*
 sql/backup/!index.html
-uploads/
-application/config/database.php
-application/cache
-/application/config/testing/database.php
+/uploads/
+/application/cache
 /sql/
-!/sql/
+/application/config/testing/database.php

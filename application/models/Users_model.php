@@ -22,6 +22,18 @@ class Users_model extends CI_Model {
 
     private function _get_datatables_query()
     {
+        //add custom filter here
+
+        if($this->input->post('first_name'))
+        {
+            $this->db->like('first_name', $this->input->post('first_name'));
+        }
+        if($this->input->post('email'))
+        {
+            $this->db->like('email', $this->input->post('email'));
+        }
+
+
         $this->db->select($this->primary_key_field.',first_name,email');
         $this->db->from($this->table);
 
