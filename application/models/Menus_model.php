@@ -2,7 +2,7 @@
 class Menus_model extends CI_Model {
 
     var $table = 'menus';
-    var $column = array('t1.name','t1.url','t1.icon'); //set column field database for order and search
+    var $column = array('t1.name','t1.url','t1.icon','t1.sort_by'); //set column field database for order and search
     var $order = array('menu_id' => 'desc'); // default order
 
     function __construct()
@@ -106,5 +106,35 @@ class Menus_model extends CI_Model {
         $this->db->delete($this->table);
     }
 
+    public function delete_by_menu_id($id)
+    {
+        $this->db->where('menu_id', $id);
+        $this->db->delete('menus_groups');
+    }
 
+    public function insert_menus_groups($data=array(),$menu_id)
+    {
+        $this->delete_by_menu_id($menu_id);
+        if(count($this->input->post('group_ids')) >0){
+            $data = array();
+            foreach($this->input->post('group_ids') as $key=>$val){
+                $data[$key]['menu_id'] = $menu_id;
+                $data[$key]['group_id'] = $val;
+            }
+        }
+//cidb($this->input->post());
+        if(empty($data)){
+            return true;
+        }
+        $this->db->insert_batch('menus_groups', $data);
+    }
+
+    public function menus_groups_get_by_id($id)
+    {
+        $this->db->from('menus_groups');
+        $this->db->where('menu_id',$id);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
 }

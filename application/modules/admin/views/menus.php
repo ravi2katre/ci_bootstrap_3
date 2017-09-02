@@ -13,6 +13,7 @@
                 <th>Parent</th>
                 <th>Url</th>
                 <th>Icon</th>
+                <th>Sort by</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -25,6 +26,7 @@
                 <th>Parent</th>
                 <th>Url</th>
                 <th>Icon</th>
+                <th>Sort by</th>
                 <th>Action</th>
             </tr>
         </tfoot>
@@ -134,7 +136,11 @@ function edit_menu(id)
             $('[name="name"]').val(data.name);
             $('[name="url"]').val(data.url);
             $('[name="icon"]').val(data.icon);
+            $('[name="sort_by"]').val(data.sort_by);
             $('[name="parent_id"]').val(data.parent_id);
+            $.each(data.group_ids, function(i, val){
+                $('.checkbox').find( 'input[value="' + val.group_id + '"]').prop('checked', 'checked');
+            });
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit'); // Set title to Bootstrap modal title
 
@@ -307,7 +313,13 @@ function deleteList()
                                 <span class="help-block"></span>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Sort by</label>
+                            <div class="col-md-9">
+                                <input name="sort_by" placeholder="Sort by" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">Parent Menu</label>
                             <div class="col-md-9">
@@ -326,14 +338,15 @@ function deleteList()
                         <div class="form-group">
                             <label class="control-label col-md-3">Roles</label>
                             <div class="col-md-9">
-                                <select name="parent_id" class="form-control">
-                                    <option value="">--Select Menu--</option>
+
                                     <?php
-                                    foreach($list as $value){
-                                        echo '<option value="'.$value->menu_id.'">'.$value->name.'</option>';
+                                    foreach($groups as $value){
+                                        echo '<div class="checkbox">';
+                                        echo '<label><input type="checkbox" name="group_ids[]"  value="'.$value->id.'"> '.$value->name."</label>";
+                                        echo '</div>';
                                     }
                                     ?>
-                                </select>
+
                                 <span class="help-block"></span>
                             </div>
                         </div>

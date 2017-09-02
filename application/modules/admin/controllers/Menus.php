@@ -18,6 +18,8 @@ class Menus extends Admin_Controller{
   {
       $this->load->helper('url');
       $this->mViewData['list'] = $this->Menus_model->get_rows();
+      $this->mViewData['groups'] = $this->db->get('groups')->result();
+
       $this->render('menus');
   }
 
@@ -34,6 +36,7 @@ class Menus extends Admin_Controller{
           $row[] = $menus->parent_menu;
           $row[] = $menus->url;
           $row[] = $menus->icon;
+          $row[] = $menus->sort_by;
 
           //add html for action
           $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_menu('."'".$menus->menu_id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
@@ -53,6 +56,7 @@ class Menus extends Admin_Controller{
   public function ajax_edit($id)
   {
       $data = $this->Menus_model->get_by_id($id);
+      $data->group_ids = $this->Menus_model->menus_groups_get_by_id($id);
       $this->render_json($data);
   }
 
@@ -63,9 +67,13 @@ class Menus extends Admin_Controller{
               'name' => $this->input->post('name'),
               'icon' => $this->input->post('icon'),
               'url' => $this->input->post('url'),
+              'sort_by' => $this->input->post('sort_by'),
               'parent_id' => $this->input->post('parent_id'),
           );
       $insert = $this->Menus_model->save($data);
+      $this->Menus_model->insert_menus_groups($this->input->post('group_ids'),$insert);
+
+
       $this->render_json(array("status" => TRUE));
   }
 
@@ -75,10 +83,12 @@ class Menus extends Admin_Controller{
       $data = array(
           'name' => $this->input->post('name'),
           'icon' => $this->input->post('icon'),
+          'sort_by' => $this->input->post('sort_by'),
           'url' => $this->input->post('url'),
           'parent_id' => $this->input->post('parent_id'),
           );
       $this->Menus_model->update(array('menu_id' => $this->input->post('menu_id')), $data);
+      $this->Menus_model->insert_menus_groups($this->input->post('group_ids'),$this->input->post('menu_id'));
       $this->render_json(array("status" => TRUE));
   }
 
@@ -125,31 +135,6 @@ class Menus extends Admin_Controller{
       }
   }
 
-  private function _validate_string($string)
-  {
-      $allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-      for ($i=0; $i<strlen($string); $i++)
-      {
-          if (strpos($allowed, substr($string,$i,1))===FALSE)
-          {
-              return FALSE;
-          }
-      }
 
-     return TRUE;
-  }
 
-  private function _validate_number($string)
-  {
-      $allowed = "0123456789";
-      for ($i=0; $i<strlen($string); $i++)
-      {
-          if (strpos($allowed, substr($string,$i,1))===FALSE)
-          {
-              return FALSE;
-          }
-      }
-
-     return TRUE;
-  }
 }

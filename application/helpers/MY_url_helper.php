@@ -109,6 +109,7 @@ function admin_menus(){
     $ci =& get_instance();
     $ci->db->from('menus');
     //$ci->db->where('menu_id',$id);
+    $ci->db->order_by('sort_by');
     $query = $ci->db->get();
     $rows = $query->result_array();
     $menus = buildTree($rows);
