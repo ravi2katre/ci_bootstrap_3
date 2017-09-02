@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Users extends Admin_Controller{
-    var $table = 'users';
+class Groups extends Admin_Controller{
+    var $table = 'groups';
     var $primary_key_field = 'id';
-    var $model_name = 'Users_model';
+    var $model_name = 'Groups_model';
     public function __construct()
   {
       parent::__construct();
@@ -22,7 +22,6 @@ class Users extends Admin_Controller{
   {
       $this->load->helper('url');
       $this->mViewData['list'] = $this->{$this->model_name}->get_rows();
-      $this->mViewData['groups'] = $this->db->get('groups')->result();
       $this->render($this->table.'/list');
   }
 
@@ -35,13 +34,13 @@ class Users extends Admin_Controller{
           $no++;
           $row = array();
           $row[] = '<input type="checkbox" class="data-check" value="'.$item->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
-          $row[] = $item->first_name;
-          $row[] = $item->email;
+          $row[] = $item->name;
+          $row[] = $item->description;
 
 
           //add html for action
-          $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-                <a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick="delete_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+          $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
           $data[] = $row;
       }
       $output = array(
@@ -57,7 +56,6 @@ class Users extends Admin_Controller{
   public function ajax_edit($id)
   {
       $data = $this->{$this->model_name}->get_by_id($id);
-      $data->group_ids = $this->db->where('user_id',$id)->get('users_groups')->result();
       $this->render_json($data);
   }
 
@@ -65,34 +63,15 @@ class Users extends Admin_Controller{
   {
       $this->_validate();
       $data = map_column_with_array_key($this->table,$this->input->post('detail'));
-      //$insert = $this->{$this->model_name}->save($data);
-      $data['username'] = $data['email'];
-      $output = $this->ion_auth->register($data['email'],$data['password'],$data['email'],$data,$this->input->post('group_ids'));
-
-      if($output){
-
-          $this->render_json(array("status" => TRUE));
-      }else{
-
-          $this->render_json(array("status" => FALSE));
-      }
-
+      $insert = $this->{$this->model_name}->save($data);
+      $this->render_json(array("status" => TRUE));
   }
 
   public function ajax_update()
   {
       $this->_validate();
       $data = map_column_with_array_key($this->table,$this->input->post('detail'));
-      if(empty($data['password'])){
-          unset($data['password']);
-      }
-      $data['username'] = $data['email'];
-      //$this->{$this->model_name}->update(array("{$this->primary_key_field}" => $this->input->post($this->primary_key_field)), $data);
-      $this->load->model('Ion_auth_model');
-      $this->Ion_auth_model->remove_from_group(null,$this->input->post($this->primary_key_field));
-      $this->Ion_auth_model->add_to_group($this->input->post('group_ids'),$this->input->post($this->primary_key_field));
-      $this->Ion_auth_model->update($this->input->post($this->primary_key_field),$data);
-
+      $this->{$this->model_name}->update(array("{$this->primary_key_field}" => $this->input->post($this->primary_key_field)), $data);
       $this->render_json(array("status" => TRUE));
   }
 
@@ -117,39 +96,8 @@ class Users extends Admin_Controller{
       $this->load->library('form_validation');
       $this->form_validation->set_error_delimiters("<p>", "</p>");
 
-      $this->form_validation->set_rules('detail[first_name]', 'first_name', 'required');
-      $this->form_validation->set_rules('detail[last_name]', 'last_name', 'required');
-      $this->form_validation->set_rules('detail[email]', 'Email', array('required', array('validate_username', function($email){
-          //return false;
-          $condition['id !='] = $this->input->post('id');
-          $condition['email'] = $email;
-          $condition = array_filter($condition);
-          //cidb($condition );
-          $result = $this->db->get_where($this->table, $condition)->row_array();
-          //cidb($result);exit;
+      $this->form_validation->set_rules('detail[name]', 'name', 'required');
 
-          if(is_array($result) && array_key_exists('email', $result))
-          {
-              $this->form_validation->set_message('validate_username', 'The  field must contain a unique value.');
-              return FALSE;
-          }else
-          {
-              return TRUE;
-          }
-          // Check $value
-      })));
-
-      if($this->input->post('id') > 0){
-          if(!empty($this->input->post('detail[password]'))){
-              $this->form_validation->set_rules('detail[password]', 'Password', 'required|matches[password_confirm]');
-              $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
-          }
-
-
-      }else{
-      $this->form_validation->set_rules('detail[password]', 'Password', 'required|matches[password_confirm]');
-      $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
-      }
 
       $data = array();
       $data['error_string'] = array();

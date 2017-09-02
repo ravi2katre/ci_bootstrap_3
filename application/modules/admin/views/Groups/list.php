@@ -5,56 +5,22 @@
     <button id="deleteList" class="btn btn-danger" style="display: none;" onclick="deleteList()"><i class="glyphicon glyphicon-trash"></i>Delete list</button>
     <br />
     <br />
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title" >Custom Filter : </h3>
-        </div>
-        <div class="panel-body">
-            <form id="form-filter" class="form-horizontal">
-
-                <div class="form-group">
-                    <label for="FirstName" class="col-sm-2 control-label">First name</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="first_name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="LastName" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="email">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="" class="col-sm-2 control-label"></label>
-                    <div class="col-sm-4">
-                        <button type="button" id="btn-filter" class="btn btn-primary">Filter</button>
-                        <button type="button" id="btn-reset" class="btn btn-default">Reset</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
     <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
         <tr>
             <th><input type="checkbox" id="check-all"></th>
             <th>Name</th>
-            <th>Email</th>
+            <th>Description</th>
             <th>Action</th>
         </tr>
         </thead>
-
         <tbody>
         </tbody>
         <tfoot>
         <tr>
             <th></th>
             <th>Name</th>
-            <th>Email</th>
+            <th>Description</th>
             <th>Action</th>
         </tr>
         </tfoot>
@@ -78,11 +44,7 @@
             // Load data for the table's content from an Ajax source
             "ajax": {
                 "url": "<?php echo $ctrler; ?>/ajax_list",
-                "type": "POST",
-                "data": function ( data ) {
-                    data.first_name = $('#first_name').val();
-                    data.email = $('#email').val();
-                }
+                "type": "POST"
             },
 
             //Set column definition initialisation properties.
@@ -152,12 +114,9 @@
             {
 
                 $('[name="id"]').val(data.id);
-                $('[name="detail[first_name]"]').val(data.first_name);
-                $('[name="detail[last_name]"]').val(data.first_name);
-                $('[name="detail[email]"]').val(data.email);
-                $.each(data.group_ids, function(i, val){
-                    $('.checkbox').find( 'input[value="' + val.group_id + '"]').prop('checked', 'checked');
-                });
+                $('[name="detail[name]"]').val(data.name);
+                $('[name="detail[description]"]').val(data.description);
+
                 $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
                 $('.modal-title').text('Edit'); // Set title to Bootstrap modal title
 
@@ -288,25 +247,6 @@
 
 </script>
 
-<script>
-    $(document).ready(function() {
-
-
-        $(document).ready(function() {
-            $('#btn-filter').click(function(){ //button filter event click
-                table.ajax.reload();  //just reload table
-            });
-            $('#btn-reset').click(function(){ //button reset event click
-                $('#form-filter')[0].reset();
-                table.ajax.reload();  //just reload table
-            });
-
-        });
-
-
-    });
-</script>
-
 <!-- Bootstrap modal -->
 <div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
@@ -322,56 +262,20 @@
                     <div class="form-body">
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">First Name</label>
+                            <label class="control-label col-md-3">Name</label>
                             <div class="col-md-9">
-                                <input name="detail[first_name]" placeholder="First Name" class="form-control" type="text">
+                                <input name="detail[name]" placeholder="Name" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Last Name</label>
+                            <label class="control-label col-md-3">Description</label>
                             <div class="col-md-9">
-                                <input name="detail[last_name]" placeholder="Last Name" class="form-control" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Email/Username</label>
-                            <div class="col-md-9">
-                                <input name="detail[email]" placeholder="email" class="form-control" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Password</label>
-                            <div class="col-md-9">
-                                <input name="detail[password]" placeholder="Password" class="form-control" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Password Confirmation</label>
-                            <div class="col-md-9">
-                                <input name="password_confirm" placeholder="Password Confirmation" class="form-control" type="text">
+                                <input name="detail[description]" placeholder="Description" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Roles</label>
-                            <div class="col-md-9">
-
-                                <?php
-                                foreach($groups as $value){
-                                    echo '<div class="checkbox">';
-                                    echo '<label><input type="checkbox" name="group_ids[]"  value="'.$value->id.'"> '.$value->name."</label>";
-                                    echo '</div>';
-                                }
-                                ?>
-
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
 
                     </div>
                 </form>

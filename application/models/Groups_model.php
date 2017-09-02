@@ -1,9 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Menus_model extends CI_Model {
+class Groups_model extends CI_Model {
 
-    var $table = 'menus';
-    var $column = array('','t1.name','t2.name','t1.url','t1.icon','t1.sort_by'); //set column field database for order and search
-    var $order = array('menu_id' => 'desc'); // default order
+    var $table = 'groups';
+    var $primary_key_field = 'id';
+    var $column = array('id','name','description'); //set column field database for order and search
+    var $order = array('id' => 'desc'); // default order
 
     function __construct()
     {
@@ -13,18 +14,16 @@ class Menus_model extends CI_Model {
 
     public function get_rows()
     {
-
         $this->db->from($this->table);
-        $this->db->order_by('menu_id', 'ASC');
+        $this->db->order_by($this->primary_key_field, 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
     private function _get_datatables_query()
     {
-        $this->db->select('t1.*,t2.name as parent_menu');
-        $this->db->from($this->table." t1");
-        $this->db->join($this->table." t2", 't1.parent_id = t2.menu_id','left');
+        $this->db->select('*');
+        $this->db->from($this->table);
 
         $i = 0;
         foreach ($this->column as $item) // loop column
@@ -46,6 +45,7 @@ class Menus_model extends CI_Model {
             $column[$i] = $item; // set column array variable to order processing
             $i++;
         }
+        //cidb($this->input->post('order'));
         if($this->input->post('order')) // here order processing
         {
             $this->db->order_by($column[$this->input->post('order[0][column]')], $this->input->post('order[0][dir]'));
@@ -82,7 +82,7 @@ class Menus_model extends CI_Model {
     public function get_by_id($id)
     {
         $this->db->from($this->table);
-        $this->db->where('menu_id',$id);
+        $this->db->where($this->primary_key_field,$id);
         $query = $this->db->get();
 
         return $query->row();
@@ -102,39 +102,9 @@ class Menus_model extends CI_Model {
 
     public function delete_by_id($id)
     {
-        $this->db->where('menu_id', $id);
+        $this->db->where($this->primary_key_field, $id);
         $this->db->delete($this->table);
     }
 
-    public function delete_by_menu_id($id)
-    {
-        $this->db->where('menu_id', $id);
-        $this->db->delete('menus_groups');
-    }
 
-    public function insert_menus_groups($data=array(),$menu_id)
-    {
-        $this->delete_by_menu_id($menu_id);
-        if(count($this->input->post('group_ids')) >0){
-            $data = array();
-            foreach($this->input->post('group_ids') as $key=>$val){
-                $data[$key]['menu_id'] = $menu_id;
-                $data[$key]['group_id'] = $val;
-            }
-        }
-//cidb($this->input->post());
-        if(empty($data)){
-            return true;
-        }
-        $this->db->insert_batch('menus_groups', $data);
-    }
-
-    public function menus_groups_get_by_id($id)
-    {
-        $this->db->from('menus_groups');
-        $this->db->where('menu_id',$id);
-        $query = $this->db->get();
-
-        return $query->result();
-    }
 }
