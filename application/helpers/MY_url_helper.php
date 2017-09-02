@@ -110,11 +110,33 @@ function admin_menus(){
     $ci->db->from('menus');
     //$ci->db->where('menu_id',$id);
     $query = $ci->db->get();
-    $menus = array();
-    foreach($query->result_array() as $key=>$val){
-        $menus[$val['name']] = $val;
+    $rows = $query->result_array();
+    $menus = buildTree($rows);
+    $new_menus = array();
+    foreach($menus as $key=>$val){
+        $new_menus[$val['name']] = $val;
+        $new_menus[$val['name']]['children'] = array();
+        foreach($val['children'] as $key_sub=>$val_sub){
+            $new_menus[$val['name']]['children'][$val_sub['name']] = $val_sub['url'];
+        }
+    }
+    //cidb($new_menus);exit;
+    return $new_menus;
+}
+
+function buildTree(array $elements, $parentId = 0) {
+    $branch = array();
+
+    foreach ($elements as $element) {
+        if ($element['parent_id'] == $parentId) {
+            $children = buildTree($elements, $element['menu_id']);
+            if ($children) {
+                $element['children'] = $children;
+            }
+            $branch[] = $element;
+        }
     }
 
-    return $menus;
-    //return $ci->Menus_model->get_rows();
+    return $branch;
 }
+
