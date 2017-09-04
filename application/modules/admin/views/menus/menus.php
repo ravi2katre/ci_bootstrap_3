@@ -40,9 +40,25 @@ var table;
 
 $(document).ready(function() {
 
+
     //datatables
     table = $('#table').DataTable({
-
+        dom: 'lBfrtip',
+        buttons: [
+            {
+                className: 'buttons-alert',
+                "text": "Export csv",
+                action: function (e, dt, node, config)
+                {
+                    /*var SearchData = table.search();
+                    var OrderData = table.order();
+                    alert("Test Data for Searching: " + SearchData);
+                    alert("Test Data for Ordering: " + OrderData);*/
+                    window.location.href = 'menus/export';
+                    exit;
+                }
+            }
+        ],
         "processing": true, //Feature control the processing indicator.
         "serverSide": true, //Feature control DataTables' server-side processing mode.
         "order": [], //Initial no order.

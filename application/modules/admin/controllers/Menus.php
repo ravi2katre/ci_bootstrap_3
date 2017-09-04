@@ -7,11 +7,20 @@ class Menus extends Admin_Controller{
       $this->load->model('Menus_model');
       $this->add_stylesheet(BASE_URL.'assets/bootstrap/css/bootstrap.min.css',true,'screen');
       $this->add_stylesheet(BASE_URL.'assets/datatables/css/dataTables.bootstrap.css',true,'screen');
-
+      $this->add_stylesheet('https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css',true,'screen');
       //$this->add_script(BASE_URL.'assets/jquery/jquery.js',true,'foot');
       //$this->add_script(BASE_URL.'assets/bootstrap/js/bootstrap.min.js',true,'foot');
       $this->add_script(BASE_URL.'assets/datatables/js/jquery.dataTables.min.js',true,'foot');
+      $this->add_script('https://cdn.datatables.net/buttons/1.4.1/js/dataTables.buttons.min.js',true,'foot');
+      $this->add_script('https://cdn.datatables.net/select/1.2.2/js/dataTables.select.min.js',true,'foot');
+      $this->add_script('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js',true,'foot');
+      $this->add_script('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js',true,'foot');
+      $this->add_script('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js',true,'foot');
+      $this->add_script('https://cdn.datatables.net/buttons/1.4.1/js/buttons.html5.min.js',true,'foot');
+      //$this->add_script('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js',true,'foot');
+
       $this->add_script(BASE_URL.'assets/datatables/js/dataTables.bootstrap.js',true,'foot');
+
   }
 
   public function index()
@@ -22,9 +31,31 @@ class Menus extends Admin_Controller{
 
       $this->render('menus/menus.php');
   }
+  public function export()
+  {
+      $_POST = $this->session->userdata['keep_post_data'];
+      //cidb($_POST);
+      $data = $this->Menus_model->export();
+     // cidb($list);
+      header("Content-type: application/csv");
+      header("Content-Disposition: attachment; filename=\"test".".csv\"");
+      header("Pragma: no-cache");
+      header("Expires: 0");
 
+      $handle = fopen('php://output', 'w');
+
+      foreach ($data as $data) {
+          fputcsv($handle, objToArray($data));
+      }
+      fclose($handle);
+      exit;
+      //$this->render_json($list);
+      //exit;
+  }
   public function ajax_list()
   {
+      $this->session->set_userdata('keep_post_data', $this->input->post());
+
       $list = $this->Menus_model->get_datatables();
       $data = array();
       $no = $this->input->post('start');

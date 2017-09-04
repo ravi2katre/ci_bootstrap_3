@@ -2,7 +2,7 @@
 class Menus_model extends CI_Model {
 
     var $table = 'menus';
-    var $column = array('','t1.name','t2.name','t1.url','t1.icon','t1.sort_by'); //set column field database for order and search
+    var $column = array('t1.menu_id','t1.name','t2.name','t1.url','t1.icon','t1.sort_by'); //set column field database for order and search
     var $order = array('menu_id' => 'desc'); // default order
 
     function __construct()
@@ -29,6 +29,9 @@ class Menus_model extends CI_Model {
         $i = 0;
         foreach ($this->column as $item) // loop column
         {
+            if(empty($item)){
+                continue;
+            }
             if($this->input->post('search[value]')) // if datatable send POST for search
             {
                 if($i===0) // first loop
@@ -65,7 +68,12 @@ class Menus_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
+    function export()
+    {
+        $this->_get_datatables_query();
+        $query = $this->db->get();
+        return $query->result();
+    }
     function count_filtered()
     {
         $this->_get_datatables_query();
