@@ -31,3 +31,5 @@ sql/backup/!index.html
 /application/cache
 /sql/
 /application/config/testing/database.php
+
+!/sql/latest.sql

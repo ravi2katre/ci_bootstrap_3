@@ -54,12 +54,19 @@ CREATE TABLE `admin_users` (
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1465489592', '1', 'Webmaster', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, 'StLbqBF3j7FRHjJ3t45JCO', '1451900190', '1504160490', '1', 'Webmaster', '');
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, NULL, '1451900228', '1465489580', '1', 'Admin', '');
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('3', '127.0.0.1', 'manager', '$2y$08$snzIJdFXvg/rSHe0SndIAuvZyjktkjUxBXkrrGdkPy1K6r5r/dMLa', NULL, NULL, NULL, NULL, NULL, NULL, '1451900430', '1465489585', '1', 'Manager', '');
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('4', '127.0.0.1', 'staff', '$2y$08$NigAXjN23CRKllqe3KmjYuWXD5iSRPY812SijlhGeKfkrMKde9da6', NULL, NULL, NULL, NULL, NULL, NULL, '1451900439', '1465489590', '1', 'Staff', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('5', '::1', 'ravi2katre@gmail.com', '$2y$08$2c7fglguF3b0yIcvx4AvPOvYZWWJMB9EkRNL4Wr0En8r1qqOeOXLe', NULL, 'ravi2katre@gmail.com', NULL, NULL, NULL, NULL, '1504178236', NULL, '1', 'rrr', 'fgfg');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('6', '::1', 'ravi22katre@gmail.com', '$2y$08$gF0wSLtjtrdZovScW/Wcs.tN.kBhAkTfw52t2G65nf1Cm19icJ46O', NULL, 'ravi22katre@gmail.com', NULL, NULL, NULL, NULL, '1504178297', NULL, '1', 'ddf', 'dfdff');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('7', '::1', 'ravi2katre@ymail.com', '$2y$08$YgrHa785/eqUMKxnGGHLtuf41bw.E28ZS3bGXxE5zgSyv5ySPsKDa', NULL, 'ravi2katre@ymail.com', NULL, NULL, NULL, NULL, '1504178655', NULL, '1', 'aa', 'ss');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('8', '::1', 'dfdfd@ff.com', '$2y$08$NCPVS1QygDKZh176A48eXOfBVOXz.00y6AT/6aKPFHScCSe2gMG92', NULL, 'dfdfd@ff.com', NULL, NULL, NULL, NULL, '1504179205', NULL, '1', 'dfdff', 'dfdfdf');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('9', '::1', 'sdsd@ff.com', '$2y$08$/qTeBABIFk8U29ll7IbWR.2RcOG/HY8JdpbH6kn.uvsLAn7xkAmXK', NULL, 'sdsd@ff.com', NULL, NULL, NULL, NULL, '1504179293', NULL, '1', 'ssdsd', 'sdsdsd');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('10', '::1', 'dfdf@gg.com', '$2y$08$fIJDdAqkZKwUPrsRSInK9ebEOjWsLo9hMAkFdyhC1K0AFwiMD2GW6', NULL, 'dfdf@gg.com', NULL, NULL, NULL, NULL, '1504179348', NULL, '1', 'dfdf', 'dfdf');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('11', '::1', 'dfff@ff.com', '$2y$08$QT5v/cSd/0CmYTqbul71yuwmko/dD9uGEvwP4cWPJ2CSMkrCMDCTa', NULL, 'dfff@ff.com', NULL, NULL, NULL, NULL, '1504179482', NULL, '1', 'ddd', 'dfdf');
 
 
 #
@@ -73,12 +80,19 @@ CREATE TABLE `admin_users_groups` (
   `user_id` int(11) unsigned NOT NULL,
   `group_id` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('1', '1', '1');
 INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('2', '2', '2');
 INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('3', '3', '3');
 INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('4', '4', '4');
+INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('5', '5', '1');
+INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('6', '6', '1');
+INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('7', '7', '1');
+INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('8', '8', '1');
+INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('9', '9', '1');
+INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('10', '10', '1');
+INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('11', '11', '1');
 
 
 #
@@ -153,6 +167,44 @@ CREATE TABLE `api_logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
+# TABLE STRUCTURE FOR: emails
+#
+
+DROP TABLE IF EXISTS `emails`;
+
+CREATE TABLE `emails` (
+  `id` int(9) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `subject` varchar(128) NOT NULL,
+  `mail_from` varchar(128) NOT NULL,
+  `mail_from_name` varchar(255) DEFAULT NULL,
+  `mail_to` varchar(255) DEFAULT NULL,
+  `content` longtext NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: events
+#
+
+DROP TABLE IF EXISTS `events`;
+
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `description` tinytext NOT NULL,
+  `Images` int(11) NOT NULL,
+  `comments` tinytext NOT NULL,
+  `date` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+INSERT INTO `events` (`id`, `title`, `description`, `Images`, `comments`, `date`) VALUES ('1', 'Birth Day', '', '0', '', '0000-00-00 00:00:00');
+INSERT INTO `events` (`id`, `title`, `description`, `Images`, `comments`, `date`) VALUES ('2', 'Your Birth day', '', '0', '', '0000-00-00 00:00:00');
+
+
+#
 # TABLE STRUCTURE FOR: groups
 #
 
@@ -163,9 +215,13 @@ CREATE TABLE `groups` (
   `name` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-INSERT INTO `groups` (`id`, `name`, `description`) VALUES ('1', 'members', 'General User');
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES ('1', 'webmaster', 'General User');
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES ('2', 'members', '');
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES ('3', 'Schools', '');
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES ('4', 'Parents', '');
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES ('5', 'Students', '');
 
 
 #
@@ -181,6 +237,61 @@ CREATE TABLE `login_attempts` (
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: menus
+#
+
+DROP TABLE IF EXISTS `menus`;
+
+CREATE TABLE `menus` (
+  `menu_id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  `children` varchar(255) NOT NULL,
+  `sort_by` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`menu_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('8', '0', 'Home', 'home', 'fa fa-home', '', '0');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('9', '11', 'Users', 'users', 'fa fa-users', '', '2');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('10', '11', 'Account', 'panel/account', 'fa fa-cog', '', '200');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('11', '0', 'Utilities', 'util/list_db', 'fa fa-cogs', '', '90');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('12', '0', 'Sign Out', 'panel/logout', 'fa fa-sign-out', '', '100');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('13', '11', 'Database version', 'util/list_db', 'fa fa-circle-o text-aqua', '', '300');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('15', '11', 'Menu', 'menus', 'fa fa-circle', '', '0');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('16', '11', 'Emails', 'emails', 'fa fa-circle', '', '0');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('20', '0', 'Schools', 'schools', 'fa fa-circle', '', '0');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('21', '0', 'Students', 'students', 'fa fa-circle', '', '0');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('22', '0', 'Events', 'events', 'fa fa-circle', '', '0');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('23', '0', 'Parents', 'parents', 'fa fa-circle', '', '0');
+INSERT INTO `menus` (`menu_id`, `parent_id`, `name`, `url`, `icon`, `children`, `sort_by`) VALUES ('24', '11', 'Groups', 'groups', 'fa fa-circle', '', '0');
+
+
+#
+# TABLE STRUCTURE FOR: menus_groups
+#
+
+DROP TABLE IF EXISTS `menus_groups`;
+
+CREATE TABLE `menus_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  `menu_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+INSERT INTO `menus_groups` (`id`, `group_id`, `menu_id`) VALUES ('6', '1', '16');
+INSERT INTO `menus_groups` (`id`, `group_id`, `menu_id`) VALUES ('3', '1', '8');
+INSERT INTO `menus_groups` (`id`, `group_id`, `menu_id`) VALUES ('9', '1', '20');
+INSERT INTO `menus_groups` (`id`, `group_id`, `menu_id`) VALUES ('12', '1', '21');
+INSERT INTO `menus_groups` (`id`, `group_id`, `menu_id`) VALUES ('14', '1', '22');
+INSERT INTO `menus_groups` (`id`, `group_id`, `menu_id`) VALUES ('16', '1', '23');
+INSERT INTO `menus_groups` (`id`, `group_id`, `menu_id`) VALUES ('17', '1', '9');
+INSERT INTO `menus_groups` (`id`, `group_id`, `menu_id`) VALUES ('19', '1', '24');
+
 
 #
 # TABLE STRUCTURE FOR: users
@@ -207,9 +318,12 @@ CREATE TABLE `users` (
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
-INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('1', '127.0.0.1', 'member', '$2y$08$kkqUE2hrqAJtg.pPnAhvL.1iE7LIujK5LZ61arONLpaBBWh/ek61G', NULL, 'member@member.com', NULL, NULL, NULL, NULL, '1451903855', '1451905011', '1', 'Member', 'One', NULL, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('1', '127.0.0.1', 'member', '$2y$08$kkqUE2hrqAJtg.pPnAhvL.1iE7LIujK5LZ61arONLpaBBWh/ek61G', NULL, 'member@member.com', NULL, NULL, NULL, NULL, '1451903855', '1504615224', '1', 'Member', 'One', NULL, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('6', '::1', 'ddd5@ddd.com', '$2y$08$5R41h5xqbLNDS9VHt91TJOwoR51CgyEtIyzi9.tpWlT9nmXMb5FUm', NULL, 'ddd5@ddd.com', NULL, NULL, NULL, NULL, '1504253360', NULL, '1', 'aa', 'aa', NULL, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('7', '::1', 'ddd2@ddd.com', '$2y$08$ppLIxQvtsFP4jsuI9aeZAOopkdAb0tnTBCefZri8A3wXQynBVp1Ta', NULL, 'ddd2@ddd.com', NULL, NULL, NULL, NULL, '1504261130', NULL, '1', 'ravi', 'ravi', NULL, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('8', '::1', 'school@school.com', '$2y$08$OtACKrDIZ./2wDRwFWpyquUxRfip68kdvwK2GOex/DYh8E4wHyP4u', NULL, 'school@school.com', NULL, NULL, NULL, NULL, '1504615142', NULL, '1', 'Groups', 'groups', NULL, NULL);
 
 
 #
@@ -223,8 +337,14 @@ CREATE TABLE `users_groups` (
   `user_id` int(11) unsigned NOT NULL,
   `group_id` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('1', '1', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('3', '4', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('4', '5', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('5', '6', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('6', '7', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('7', '3', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('8', '8', '1');
 
 
