@@ -25,11 +25,9 @@ application/composer.lock
 *.map
 *.idea
 ### SQL backup files ###
-sql/backup/*
-sql/backup/!index.html
+
 /uploads/
 /application/cache
-/sql/
-/application/config/testing/database.php
 
-!/sql/latest.sql
+
+

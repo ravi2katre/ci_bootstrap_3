@@ -117,9 +117,12 @@ function admin_menus(){
     foreach($menus as $key=>$val){
         $new_menus[$val['name']] = $val;
         $new_menus[$val['name']]['children'] = array();
-        foreach($val['children'] as $key_sub=>$val_sub){
-            $new_menus[$val['name']]['children'][$val_sub['name']] = $val_sub['url'];
+        if(isset($val['children'][0])){
+            foreach($val['children'] as $key_sub=>$val_sub){
+                $new_menus[$val['name']]['children'][$val_sub['name']] = $val_sub['url'];
+            }
         }
+
     }
     //cidb($new_menus);exit;
     return $new_menus;

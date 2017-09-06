@@ -200,8 +200,6 @@ CREATE TABLE `events` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
-INSERT INTO `events` (`id`, `title`, `description`, `Images`, `comments`, `date`) VALUES ('1', 'Birth Day', '', '0', '', '0000-00-00 00:00:00');
-INSERT INTO `events` (`id`, `title`, `description`, `Images`, `comments`, `date`) VALUES ('2', 'Your Birth day', '', '0', '', '0000-00-00 00:00:00');
 
 
 #

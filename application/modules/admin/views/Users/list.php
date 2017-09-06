@@ -2,6 +2,7 @@
 
     <button class="btn btn-success" onclick="add_row()"><i class="glyphicon glyphicon-plus"></i>Add</button>
     <button class="btn btn-default" onclick="reloadTable()"><i class="glyphicon glyphicon-refresh"></i>Reload</button>
+
     <button id="deleteList" class="btn btn-danger" style="display: none;" onclick="deleteList()"><i class="glyphicon glyphicon-trash"></i>Delete list</button>
     <br />
     <br />
@@ -74,7 +75,6 @@
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
             "order": [], //Initial no order.
-
             // Load data for the table's content from an Ajax source
             "ajax": {
                 "url": "<?php echo $ctrler; ?>/ajax_list",
@@ -289,20 +289,17 @@
 </script>
 
 <script>
+
+
+
     $(document).ready(function() {
-
-
-        $(document).ready(function() {
-            $('#btn-filter').click(function(){ //button filter event click
-                table.ajax.reload();  //just reload table
-            });
-            $('#btn-reset').click(function(){ //button reset event click
-                $('#form-filter')[0].reset();
-                table.ajax.reload();  //just reload table
-            });
-
+        $('#btn-filter').click(function(){ //button filter event click
+            table.ajax.reload();  //just reload table
         });
-
+        $('#btn-reset').click(function(){ //button reset event click
+            $('#form-filter')[0].reset();
+            table.ajax.reload();  //just reload table
+        });
 
     });
 </script>

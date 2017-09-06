@@ -6,7 +6,7 @@ class Menus extends Admin_Controller{
       parent::__construct();
       $this->load->model('Menus_model');
       $this->add_stylesheet(BASE_URL.'assets/bootstrap/css/bootstrap.min.css',true,'screen');
-      $this->add_stylesheet(BASE_URL.'assets/datatables/css/dataTables.bootstrap.css',true,'screen');
+      //$this->add_stylesheet(BASE_URL.'assets/datatables/css/dataTables.bootstrap.css',true,'screen');
       $this->add_stylesheet('https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css',true,'screen');
       //$this->add_script(BASE_URL.'assets/jquery/jquery.js',true,'foot');
       //$this->add_script(BASE_URL.'assets/bootstrap/js/bootstrap.min.js',true,'foot');
