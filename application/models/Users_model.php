@@ -3,7 +3,7 @@ class Users_model extends CI_Model {
 
     var $table = 'users';
     var $primary_key_field = 'id';
-    var $column = array('','first_name','email'); //set column field database for order and search
+    var $column = array('id','first_name','address','last_name','phone','fax','email'); //set column field database for order and search
     var $order = array('id' => 'desc'); // default order
 
     function __construct()
@@ -26,16 +26,16 @@ class Users_model extends CI_Model {
 
         if($this->input->post('first_name'))
         {
-            $this->db->like('first_name', $this->input->post('first_name'));
+            $this->db->like('u.first_name', $this->input->post('first_name'));
         }
         if($this->input->post('email'))
         {
-            $this->db->like('email', $this->input->post('email'));
+            $this->db->like('u.email', $this->input->post('email'));
         }
 
 
-        $this->db->select($this->primary_key_field.',first_name,email');
-        $this->db->from($this->table);
+        $this->db->select('u.*');
+        $this->db->from($this->table.' u');
 
         $i = 0;
         foreach ($this->column as $item) // loop column

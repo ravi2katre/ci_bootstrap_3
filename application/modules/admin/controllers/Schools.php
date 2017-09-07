@@ -35,8 +35,15 @@ class Schools extends Admin_Controller{
           $no++;
           $row = array();
           $row[] = '<input type="checkbox" class="data-check" value="'.$item->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
+
+          $row[] = $item->id;
           $row[] = $item->first_name;
+          $row[] = $item->address;
+          $row[] = $item->last_name;
+          $row[] = $item->phone;
+          $row[] = $item->fax;
           $row[] = $item->email;
+
 
 
           //add html for action

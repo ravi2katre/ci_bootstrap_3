@@ -11,24 +11,48 @@
             <h3 class="panel-title" >Custom Filter : </h3>
         </div>
         <div class="panel-body">
-            <form id="form-filter" class="form-horizontal">
+            <form id="form-filter" class="form-inline">
 
                 <div class="form-group">
-                    <label for="FirstName" class="col-sm-2 control-label">First name</label>
-                    <div class="col-sm-4">
+                    <label for="FirstName" class="control-label">Name</label>
+                    <div class="">
                         <input type="text" class="form-control" id="first_name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="LastName" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-4">
+                    <label for="address" class="control-label">Address</label>
+                    <div class="">
+                        <input type="text" class="form-control" id="address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="last_name" class=" control-label">Principal Name</label>
+                    <div class="">
+                        <input type="text" class="form-control" id="last_name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="control-label">Contact Number</label>
+                    <div class="">
+                        <input type="text" class="form-control" id="phone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fax" class="control-label">Fax</label>
+                    <div class="">
+                        <input type="text" class="form-control" id="fax">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="control-label">Email</label>
+                    <div class="">
                         <input type="text" class="form-control" id="email">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label"></label>
-                    <div class="col-sm-4">
+                    <label for="" class=" control-label"></label>
+                    <div class="">
                         <button type="button" id="btn-filter" class="btn btn-primary">Filter</button>
                         <button type="button" id="btn-reset" class="btn btn-default">Reset</button>
                     </div>
@@ -42,8 +66,16 @@
         <thead>
         <tr>
             <th><input type="checkbox" id="check-all"></th>
+
+            <th>Id</th>
             <th>Name</th>
+            <th>Address</th>
+            <th>Principal Name</th>
+            <th>Contact Number</th>
+            <th>Fax</th>
             <th>Email</th>
+
+
             <th>Action</th>
         </tr>
         </thead>
@@ -53,8 +85,16 @@
         <tfoot>
         <tr>
             <th></th>
+
+            <th>Id</th>
             <th>Name</th>
+            <th>Address</th>
+            <th>Principal Name</th>
+            <th>Contact Number</th>
+            <th>Fax</th>
             <th>Email</th>
+
+
             <th>Action</th>
         </tr>
         </tfoot>
@@ -322,16 +362,37 @@
                     <div class="form-body">
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">First Name</label>
+                            <label class="control-label col-md-3">Name</label>
                             <div class="col-md-9">
                                 <input name="detail[first_name]" placeholder="First Name" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Last Name</label>
+                            <label class="control-label col-md-3">Address</label>
                             <div class="col-md-9">
-                                <input name="detail[last_name]" placeholder="Last Name" class="form-control" type="text">
+                                <input name="detail[address]" placeholder="Address" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Principal Name</label>
+                            <div class="col-md-9">
+                                <input name="detail[last_name]" placeholder="Principal Name" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Contact Number</label>
+                            <div class="col-md-9">
+                                <input name="detail[phone]" placeholder="Contact Number" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Fax</label>
+                            <div class="col-md-9">
+                                <input name="detail[fax]" placeholder="Fax" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
