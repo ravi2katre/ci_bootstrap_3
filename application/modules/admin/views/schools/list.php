@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label for="FirstName" class="control-label">Name</label>
                     <div class="">
-                        <input type="text" class="form-control" id="first_name">
+                        <input type="text" class="form-control" id="company">
                     </div>
                 </div>
                 <div class="form-group">
@@ -26,9 +26,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="last_name" class=" control-label">Principal Name</label>
+                    <label for="first_name" class=" control-label">Principal Name</label>
                     <div class="">
-                        <input type="text" class="form-control" id="last_name">
+                        <input type="text" class="form-control" id="first_name">
                     </div>
                 </div>
                 <div class="form-group">
@@ -192,8 +192,8 @@
             {
 
                 $('[name="id"]').val(data.id);
-                $('[name="detail[first_name]"]').val(data.first_name);
-                $('[name="detail[last_name]"]').val(data.first_name);
+                $('[name="detail[company]"]').val(data.company);
+                $('[name="detail[first_name]"]').val(data.fist_name);
                 $('[name="detail[email]"]').val(data.email);
                 $.each(data.group_ids, function(i, val){
                     $('.checkbox').find( 'input[value="' + val.group_id + '"]').prop('checked', 'checked');
@@ -362,9 +362,9 @@
                     <div class="form-body">
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Name</label>
+                            <label class="control-label col-md-3">School Name</label>
                             <div class="col-md-9">
-                                <input name="detail[first_name]" placeholder="First Name" class="form-control" type="text">
+                                <input name="detail[company]" placeholder="School Name" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -378,7 +378,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Principal Name</label>
                             <div class="col-md-9">
-                                <input name="detail[last_name]" placeholder="Principal Name" class="form-control" type="text">
+                                <input name="detail[first_name]" placeholder="Principal Name" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>

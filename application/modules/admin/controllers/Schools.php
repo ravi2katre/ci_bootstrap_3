@@ -28,7 +28,10 @@ class Schools extends Admin_Controller{
 
   public function ajax_list()
   {
+      $column = array('','id','company','address','first_name','phone','fax','email');
+      $this->{$this->model_name}->set_column($column);
       $list = $this->{$this->model_name}->get_datatables();
+
       $data = array();
       $no = $this->input->post('start');
       foreach ($list as $item) {
@@ -37,9 +40,9 @@ class Schools extends Admin_Controller{
           $row[] = '<input type="checkbox" class="data-check" value="'.$item->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
 
           $row[] = $item->id;
-          $row[] = $item->first_name;
+          $row[] = $item->company;
           $row[] = $item->address;
-          $row[] = $item->last_name;
+          $row[] = $item->first_name ;
           $row[] = $item->phone;
           $row[] = $item->fax;
           $row[] = $item->email;
@@ -56,6 +59,7 @@ class Schools extends Admin_Controller{
                       "recordsTotal" => $this->{$this->model_name}->count_all(),
                       "recordsFiltered" => $this->{$this->model_name}->count_filtered(),
                       "data" => $data,
+                      "last_query" => $this->db->last_query(),
               );
       //output to json format
       $this->render_json($output);
@@ -124,8 +128,8 @@ class Schools extends Admin_Controller{
       $this->load->library('form_validation');
       $this->form_validation->set_error_delimiters("<p>", "</p>");
 
+      $this->form_validation->set_rules('detail[company]', 'company', 'required');
       $this->form_validation->set_rules('detail[first_name]', 'first_name', 'required');
-      $this->form_validation->set_rules('detail[last_name]', 'last_name', 'required');
       $this->form_validation->set_rules('detail[email]', 'Email', array('required', array('validate_username', function($email){
           //return false;
           $condition['id !='] = $this->input->post('id');

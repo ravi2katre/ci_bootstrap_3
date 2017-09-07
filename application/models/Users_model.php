@@ -3,13 +3,17 @@ class Users_model extends CI_Model {
 
     var $table = 'users';
     var $primary_key_field = 'id';
-    var $column = array('id','first_name','address','last_name','phone','fax','email'); //set column field database for order and search
+    var $column = array('id','company','address','last_name','phone','fax','email'); //set column field database for order and search
     var $order = array('id' => 'desc'); // default order
 
     function __construct()
     {
         parent::__construct();
         $this->load->database();
+    }
+
+    public function set_column($column= array()){
+        $this->column = $column;
     }
 
     public function get_rows()
