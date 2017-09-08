@@ -16,6 +16,10 @@ class Students extends Admin_Controller{
       $this->add_script(BASE_URL.'assets/datatables/js/dataTables.bootstrap.js',true,'foot');
       $this->mViewData['primary_key_field'] = $this->primary_key_field;
 
+      $this->mViewData['columns'] = array('','id','first_name','middle_name','last_name','address','email','phone','phone2');
+      $this->{$this->model_name}->set_column($this->mViewData['columns']);
+      $this->{$this->model_name}->set_group_ids(array(STUDENT));
+
   }
 
   public function index()
@@ -26,33 +30,40 @@ class Students extends Admin_Controller{
       $this->render($this->mCtrler.'/list');
   }
 
-  public function ajax_list()
-  {
-      $list = $this->{$this->model_name}->get_datatables();
-      $data = array();
-      $no = $this->input->post('start');
-      foreach ($list as $item) {
-          $no++;
-          $row = array();
-          $row[] = '<input type="checkbox" class="data-check" value="'.$item->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
-          $row[] = $item->first_name;
-          $row[] = $item->email;
+    public function ajax_list()
+    {
+
+        $list = $this->{$this->model_name}->get_datatables();
+
+        $data = array();
+        $no = $this->input->post('start');
+        foreach ($list as $item) {
+            $no++;
+            $row = array();
+            $row[] = '<input type="checkbox" class="data-check" value="'.$item->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
+
+            foreach($this->mViewData['columns'] as $val){
+                if(!empty($val)){
+                    $row[] = $item->$val;
+                }
+            }
 
 
-          //add html for action
-          $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+            //add html for action
+            $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                 <a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick="delete_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-          $data[] = $row;
-      }
-      $output = array(
-                      "draw" => $this->input->post('draw'),
-                      "recordsTotal" => $this->{$this->model_name}->count_all(),
-                      "recordsFiltered" => $this->{$this->model_name}->count_filtered(),
-                      "data" => $data,
-              );
-      //output to json format
-      $this->render_json($output);
-  }
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->{$this->model_name}->count_all(),
+            "recordsFiltered" => $this->{$this->model_name}->count_filtered(),
+            "data" => $data,
+            "last_query" => $this->db->last_query(),
+        );
+        //output to json format
+        $this->render_json($output);
+    }
 
   public function ajax_edit($id)
   {

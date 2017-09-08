@@ -5,6 +5,7 @@ class Users_model extends CI_Model {
     var $primary_key_field = 'id';
     var $column = array('id','company','address','last_name','phone','fax','email'); //set column field database for order and search
     var $order = array('id' => 'desc'); // default order
+    var $group_ids = array(ADMINISTRATOR,MEMBER,SCHOOL,PARENT,STUDENT); // default order
 
     function __construct()
     {
@@ -14,6 +15,9 @@ class Users_model extends CI_Model {
 
     public function set_column($column= array()){
         $this->column = $column;
+    }
+    public function set_group_ids($groups= array()){
+        $this->group_ids = $groups;
     }
 
     public function get_rows()
@@ -40,6 +44,7 @@ class Users_model extends CI_Model {
 
         $this->db->select('u.*');
         $this->db->from($this->table.' u');
+        $this->db->join('users_groups ug', " ug.user_id = u.id AND ug.group_id IN('".implode(",",$this->group_ids)."')",' INNER ');
 
         $i = 0;
         foreach ($this->column as $item) // loop column

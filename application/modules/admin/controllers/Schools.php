@@ -28,8 +28,9 @@ class Schools extends Admin_Controller{
 
   public function ajax_list()
   {
-      $column = array('','id','company','address','first_name','phone','fax','email');
-      $this->{$this->model_name}->set_column($column);
+      $this->mViewData['columns'] = $columns = array('','id','company','address','first_name','phone','fax','email');
+      $this->{$this->model_name}->set_column($columns);
+      $this->{$this->model_name}->set_group_ids(array(SCHOOL));
       $list = $this->{$this->model_name}->get_datatables();
 
       $data = array();
@@ -39,14 +40,11 @@ class Schools extends Admin_Controller{
           $row = array();
           $row[] = '<input type="checkbox" class="data-check" value="'.$item->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
 
-          $row[] = $item->id;
-          $row[] = $item->company;
-          $row[] = $item->address;
-          $row[] = $item->first_name ;
-          $row[] = $item->phone;
-          $row[] = $item->fax;
-          $row[] = $item->email;
-
+          foreach($columns as $val){
+              if(!empty($val)){
+                  $row[] = $item->$val;
+              }
+          }
 
 
           //add html for action

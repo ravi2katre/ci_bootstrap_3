@@ -109,3 +109,8 @@ define('CI_BOOTSTRAP_VERSION',		'Build 20170324');	// will follow semantic versi
 
 // Upload paths
 //define('UPLOAD_COVER_PHOTO',	'assets/uploads/cover_photos');
+define('ADMINISTRATOR',1);
+define('MEMBER',2);
+define('SCHOOL',3);
+define('PARENT',4);
+define('STUDENT',5);

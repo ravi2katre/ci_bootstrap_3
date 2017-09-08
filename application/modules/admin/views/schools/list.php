@@ -193,11 +193,12 @@
 
                 $('[name="id"]').val(data.id);
                 $('[name="detail[company]"]').val(data.company);
-                $('[name="detail[first_name]"]').val(data.fist_name);
+                $('[name="detail[first_name]"]').val(data.first_name);
+                $('[name="detail[fax]"]').val(data.fax);
+                $('[name="detail[phone]"]').val(data.phone);
+                $('[name="detail[address]"]').val(data.address);
                 $('[name="detail[email]"]').val(data.email);
-                $.each(data.group_ids, function(i, val){
-                    $('.checkbox').find( 'input[value="' + val.group_id + '"]').prop('checked', 'checked');
-                });
+
                 $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
                 $('.modal-title').text('Edit'); // Set title to Bootstrap modal title
 
@@ -418,21 +419,22 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!--div class="form-group">
                             <label class="control-label col-md-3">Roles</label>
                             <div class="col-md-9">
 
                                 <?php
-                                foreach($groups as $value){
+                                /*foreach($groups as $value){
                                     echo '<div class="checkbox">';
                                     echo '<label><input type="checkbox" name="group_ids[]"  value="'.$value->id.'"> '.$value->name."</label>";
                                     echo '</div>';
-                                }
+                                }*/
                                 ?>
 
                                 <span class="help-block"></span>
                             </div>
-                        </div>
+                        </div -->
+                        <input type="hidden" name="group_ids[]" value="<?php echo SCHOOL; ?>">
 
                     </div>
                 </form>
