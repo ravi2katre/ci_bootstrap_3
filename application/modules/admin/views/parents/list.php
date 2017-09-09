@@ -2,6 +2,7 @@
 
     <button class="btn btn-success" onclick="add_row()"><i class="glyphicon glyphicon-plus"></i>Add</button>
     <button class="btn btn-default" onclick="reloadTable()"><i class="glyphicon glyphicon-refresh"></i>Reload</button>
+    <button class="btn btn-default" onclick="import_frm()"><i class="glyphicon glyphicon-refresh"></i>Import</button>
     <button id="deleteList" class="btn btn-danger" style="display: none;" onclick="deleteList()"><i class="glyphicon glyphicon-trash"></i>Delete list</button>
     <br />
     <br />
@@ -348,6 +349,77 @@
 
 
     });
+
+    function import_frm(){
+        $.confirm({
+            title: false,
+            content: 'url:<?php echo base_url("job/import_frm");?>',
+            onContentReady: function () {
+                // when content is fetched & rendered in DOM
+                //alert('onContentReady');
+                //var self = this;
+               this.buttons.ok.disable();
+                this.$content.find('.btn').click(function(){
+                    self.$content.find('form').val('Chuck norris');
+                    self.buttons.ok.enable();
+                });
+            },
+            contentLoaded: function(data, status, xhr){
+                // when content is fetched
+                self.buttons.ok.enable();
+                alert('contentLoaded: ' + status);
+            },
+            onOpenBefore: function () {
+                // before the modal is displayed.
+                alert('onOpenBefore');
+            },
+            onOpen: function () {
+                // after the modal is displayed.
+                alert('onOpen');
+            },
+            onClose: function () {
+                // before the modal is hidden.
+                alert('onClose');
+            },
+            onDestroy: function () {
+                // when the modal is removed from DOM
+                alert('onDestroy');
+            },
+            onAction: function (btnName) {
+                // when a button is clicked, with the button name
+                alert('onAction: ' + btnName);
+            },
+            buttons: {
+                ok: function(){
+                    $('#uploadForm').submit(function(e) {
+                        if($('#userImage').val()) {
+                            e.preventDefault();
+                            $('#loader-icon').show();
+                            $(this).ajaxSubmit({
+                                target:   '#targetLayer',
+                                beforeSubmit: function() {
+                                    $("#progress-bar").width('0%');
+                                },
+                                uploadProgress: function (event, position, total, percentComplete){
+                                    $("#progress-bar").width(percentComplete + '%');
+                                    $("#progress-bar").html('<div id="progress-status">' + percentComplete +' %</div>')
+                                },
+                                success:function (){
+                                    $('#loader-icon').hide();
+                                },
+                                resetForm: true
+                            });
+                            return false;
+                        }
+                    });
+
+                    return false;
+                }
+            }
+        });
+    }
+
+
 </script>
 
 <!-- Bootstrap modal -->

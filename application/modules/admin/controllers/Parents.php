@@ -22,13 +22,7 @@ class Parents extends Admin_Controller{
 
   }
 
-   public function import()
-   {
-       $this->add_stylesheet("//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css",true,'screen');
-       $this->add_script('//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js',true,'foot');
 
-       $this->render("import/import");
-   }
 
   public function index()
   {
