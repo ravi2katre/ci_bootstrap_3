@@ -1,8 +1,8 @@
 <div class="container_list" >
-<form id="uploadForm" action="parents" method="post">
+<form id="uploadForm" action="<?php echo base_url('job/import/csv_parents');?>" method="post">
     <div>
         <label>Upload Image File:</label>
-        <input name="userImage" id="userImage" type="file" class="demoInputBox" />
+        <input name="user_file" id="user_file" type="file" class="demoInputBox" />
     </div>
     <div id="progress-div"><div id="progress-bar"></div></div>
     <div id="targetLayer"></div>
