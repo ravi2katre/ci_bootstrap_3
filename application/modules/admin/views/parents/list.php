@@ -350,7 +350,11 @@
 
     });
 
+
+
     function import_frm(){
+
+
         $.confirm({
             title: false,
             content: 'url:<?php echo base_url("job/import_frm");?>',
@@ -430,8 +434,8 @@
                 },
             }
         });
-    }
 
+    }
 
 </script>
 

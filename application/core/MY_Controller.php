@@ -57,8 +57,8 @@ class MY_Controller extends MX_Controller {
 		// initial setup
 		$this->_setup();
         $this->add_stylesheet("https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css",true,'screen');
-        $this->add_script('https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js',true,'foot');
-        $this->add_script('https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js',true,'foot');
+        $this->add_script('https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js',true,'head');
+        $this->add_script('https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js',true,'head');
 	}
 
 	// Setup values from file: config/ci_bootstrap.php
