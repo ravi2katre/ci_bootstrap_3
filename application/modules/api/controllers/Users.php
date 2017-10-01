@@ -17,7 +17,48 @@ class Users extends API_Controller {
 		}
 	}
 
-    public function index_get()
+
+
+    /**
+     * @SWG\Post(path="/users",
+     *   tags={"users"},
+     *   summary="Logs user into the system",
+     *   description="",
+     *   operationId="loginUser",
+     *   produces={"application/xml", "application/json"},
+     *   @SWG\Parameter(
+     *     name="username",
+     *     in="query",
+     *     description="The user name for login",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="password",
+     *     in="query",
+     *     description="The password for login in clear text",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="x-api-key",
+     *     in="header",
+     *     description="anonymous",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Response(
+     *         response=201,
+     *         description="successful operation",
+     *
+     *     ),
+     *     @SWG\Response(
+     *         response="400",
+     *         description="Invalid status value",
+     *     )
+     * )
+     */
+    public function index_post()
     {
         //echo "gfdggdgf";
         /*$this->response([
