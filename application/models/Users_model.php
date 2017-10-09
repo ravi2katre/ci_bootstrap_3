@@ -126,5 +126,12 @@ class Users_model extends CI_Model {
         $this->db->delete($this->table);
     }
 
+    public function get_by_condition($condition)
+    {
+        $this->db->from($this->table);
+        $this->db->where($condition);
+        $query = $this->db->get();
 
+        return $query->row();
+    }
 }
