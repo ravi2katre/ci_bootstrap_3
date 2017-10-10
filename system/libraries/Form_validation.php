@@ -168,7 +168,7 @@ class CI_Form_validation {
 	{
 		// No reason to set rules if we have no POST data
 		// or a validation array has not been specified
-		if ($this->CI->input->method() !== 'post' && empty($this->validation_data))
+		if (strtolower($this->CI->input->method()) !== 'post' && empty($this->validation_data))
 		{
 			return $this;
 		}
@@ -415,9 +415,7 @@ class CI_Form_validation {
 	 */
 	public function run($group = '')
 	{
-		$validation_array = empty($this->validation_data)
-			? $_POST
-			: $this->validation_data;
+		$validation_array = empty($this->validation_data)? $_REQUEST: $this->validation_data;
 
 		// Does the _field_data array containing the validation rules exist?
 		// If not, we look to see if they were assigned via a config file
