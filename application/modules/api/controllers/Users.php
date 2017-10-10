@@ -25,15 +25,12 @@ class Users extends API_Controller {
 
 
 
-
-
-
     /**
-     * @SWG\Post(path="/users/add",
+     * @SWG\Post(path="/users/add_student",
      *   tags={"users"},
-     *   summary="Add parent as user",
+     *   summary="Add student as user",
      *   description="",
-     *   operationId="userAdd",
+     *   operationId="addStudent",
      *   produces={"application/xml", "application/json"},
      *   @SWG\Parameter(
      *     name="first_name",
@@ -71,6 +68,13 @@ class Users extends API_Controller {
      *     type="string"
      *   ),
      *   @SWG\Parameter(
+     *     name="phone",
+     *     in="query",
+     *     description="phone",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
      *     name="x-api-key",
      *     in="header",
      *     description="anonymous",
@@ -88,7 +92,7 @@ class Users extends API_Controller {
      *     )
      * )
      */
-    public function add_post()
+    public function add_student_post()
     {
         $result = $this->_validate();
         if($result['status'] == false){
@@ -100,14 +104,110 @@ class Users extends API_Controller {
         $data['first_name'] = $this->input->get_post('first_name');
         $data['last_name'] = $this->input->get_post('last_name');
         $data['email'] = $this->input->get_post('email');
+        $data['phone'] = $this->input->get_post('phone');
         $data['password'] = $this->input->get_post('password');
         //$insert = $this->{$this->model_name}->save($data);
         $data['username'] = $data['email'];
 
-        $output = $this->ion_auth->register($data['email'],$data['password'],$data['email'],array(PARENT));
+        $output = $this->ion_auth->register($data['email'],$data['password'],$data['email'],$data,array(5));
 
         if($output){
-            $this->response(array("status" => TRUE));
+            $this->response(array("status" => TRUE,"user_id" => $output));
+        }else{
+            $this->response(array("status" => FALSE), REST_Controller::HTTP_BAD_REQUEST);
+        }
+
+    }
+
+
+    /**
+     * @SWG\Post(path="/users/add_parent",
+     *   tags={"users"},
+     *   summary="Add parent as user",
+     *   description="",
+     *   operationId="addParent",
+     *   produces={"application/xml", "application/json"},
+     *   @SWG\Parameter(
+     *     name="first_name",
+     *     in="query",
+     *     description="first name",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="last_name",
+     *     in="query",
+     *     description="last name",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="email",
+     *     in="query",
+     *     description="email",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="password",
+     *     in="query",
+     *     description="The password for login in clear text",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="password_confirm",
+     *     in="query",
+     *     description="password_confirm",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="phone",
+     *     in="query",
+     *     description="phone",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="x-api-key",
+     *     in="header",
+     *     description="anonymous",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Response(
+     *         response=201,
+     *         description="successful operation",
+     *
+     *     ),
+     *     @SWG\Response(
+     *         response="400",
+     *         description="Invalid status value",
+     *     )
+     * )
+     */
+    public function add_parent_post()
+    {
+        $result = $this->_validate();
+        if($result['status'] == false){
+            $this->response($result, REST_Controller::HTTP_BAD_REQUEST);
+            exit;
+        }
+        //$data = map_column_with_array_key($this->table,$this->input->post('detail'));
+        $data = array();
+        $data['first_name'] = $this->input->get_post('first_name');
+        $data['last_name'] = $this->input->get_post('last_name');
+        $data['email'] = $this->input->get_post('email');
+        $data['phone'] = $this->input->get_post('phone');
+        $data['password'] = $this->input->get_post('password');
+        //$insert = $this->{$this->model_name}->save($data);
+        $data['username'] = $data['email'];
+        $data['group_ids'] = array(PARENT);
+        $output = $this->ion_auth->register($data['email'],$data['password'],$data['email'],$data,$data['group_ids'] );
+
+        if($output){
+            $this->response(array("status" => TRUE,"user_id" => $output));
         }else{
             $this->response(array("status" => FALSE), REST_Controller::HTTP_BAD_REQUEST);
         }
@@ -122,6 +222,7 @@ class Users extends API_Controller {
 
         $this->form_validation->set_rules('first_name', 'first_name', 'required');
         $this->form_validation->set_rules('last_name', 'last_name', 'required');
+        $this->form_validation->set_rules('phone', 'Phone', 'required');
         $this->form_validation->set_rules('email', 'Email', array('required', array('validate_username', function($email){
             //return false;
             $condition['id !='] = $this->input->post('id');
