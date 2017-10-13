@@ -109,10 +109,10 @@ class Users extends API_Controller {
         //$insert = $this->{$this->model_name}->save($data);
         $data['username'] = $data['email'];
 
-        $output = $this->ion_auth->register($data['email'],$data['password'],$data['email'],$data,array(5));
+        $user_id = $this->ion_auth->register($data['email'],$data['password'],$data['email'],$data,array(5));
 
-        if($output){
-            $this->response(array("status" => TRUE,"user_id" => $output));
+        if($user_id){
+            $this->response(array("status" => TRUE,"user_id" => $user_id));
         }else{
             $this->response(array("status" => FALSE), REST_Controller::HTTP_BAD_REQUEST);
         }
