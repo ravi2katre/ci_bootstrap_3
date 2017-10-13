@@ -134,4 +134,25 @@ class Users_model extends CI_Model {
 
         return $query->row();
     }
+
+    public function get_students_parents($condition)
+    {
+        $this->db->from('students_parents');
+        $this->db->where($condition);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function save_students_parents($data)
+    {
+        $rows = $this->get_students_parents($data);
+
+        if(!isset($rows[0])){
+        $this->db->insert('students_parents', $data);
+        return $this->db->insert_id();
+        }else{
+            return FALSE;
+        }
+    }
 }

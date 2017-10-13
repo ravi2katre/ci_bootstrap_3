@@ -127,6 +127,13 @@ class Users extends API_Controller {
      *   description="",
      *   operationId="addParent",
      *   produces={"application/xml", "application/json"},
+     *  @SWG\Parameter(
+     *     name="student_id",
+     *     in="query",
+     *     description="student_id",
+     *     required=true,
+     *     type="number"
+     *   ),
      *   @SWG\Parameter(
      *     name="first_name",
      *     in="query",
@@ -190,7 +197,7 @@ class Users extends API_Controller {
     public function add_parent_post()
     {
         $result = $this->_validate();
-        if($result['status'] == false){
+        if($result['status'] == false || empty($this->input->get_post('student_id'))){
             $this->response($result, REST_Controller::HTTP_BAD_REQUEST);
             exit;
         }
@@ -204,10 +211,15 @@ class Users extends API_Controller {
         //$insert = $this->{$this->model_name}->save($data);
         $data['username'] = $data['email'];
         $data['group_ids'] = array(PARENT);
-        $output = $this->ion_auth->register($data['email'],$data['password'],$data['email'],$data,$data['group_ids'] );
+        $user_id = $this->ion_auth->register($data['email'],$data['password'],$data['email'],$data,$data['group_ids'] );
 
-        if($output){
-            $this->response(array("status" => TRUE,"user_id" => $output));
+        if($user_id){
+
+            $students_parents['student_id'] = $this->input->get_post('student_id');
+            $students_parents['parent_id'] = $user_id;
+            $this->Users_model->save_students_parents($students_parents);
+            $this->response(array("status" => TRUE,"user_id" => $user_id));
+
         }else{
             $this->response(array("status" => FALSE), REST_Controller::HTTP_BAD_REQUEST);
         }
