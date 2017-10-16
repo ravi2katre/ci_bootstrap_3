@@ -7,6 +7,9 @@ namespace Composer\Autoload;
 class ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05
 {
     public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '0ccdf99b8f62f02c52cba55802e0c2e7' => __DIR__ . '/..' . '/zircote/swagger-php/src/functions.php',
     );
@@ -14,8 +17,15 @@ class ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php70\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\Validator\\' => 28,
+            'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\PropertyAccess\\' => 33,
+            'Symfony\\Component\\Inflector\\' => 28,
             'Symfony\\Component\\Finder\\' => 25,
             'Swagger\\' => 8,
+            'Seld\\Signal\\' => 12,
         ),
         'R' => 
         array (
@@ -25,6 +35,13 @@ class ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05
         'P' => 
         array (
             'Pusher\\' => 7,
+            'Psr\\Log\\' => 8,
+            'Port\\Tests\\' => 11,
+            'Port\\Steps\\' => 11,
+            'Port\\Excel\\' => 11,
+            'Port\\Doctrine\\' => 14,
+            'Port\\Csv\\' => 9,
+            'Port\\' => 5,
         ),
         'L' => 
         array (
@@ -42,11 +59,38 @@ class ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05
         ),
         'D' => 
         array (
+            'Doctrine\\Common\\Inflector\\' => 26,
+            'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
+            'Doctrine\\Common\\' => 16,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Php70\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/validator',
+        ),
+        'Symfony\\Component\\Translation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Symfony\\Component\\PropertyAccess\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/property-access',
+        ),
+        'Symfony\\Component\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/inflector',
+        ),
         'Symfony\\Component\\Finder\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
@@ -54,6 +98,10 @@ class ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05
         'Swagger\\' => 
         array (
             0 => __DIR__ . '/..' . '/zircote/swagger-php/src',
+        ),
+        'Seld\\Signal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/seld/signal-handler/src',
         ),
         'React\\Promise\\' => 
         array (
@@ -66,6 +114,34 @@ class ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05
         'Pusher\\' => 
         array (
             0 => __DIR__ . '/..' . '/pusher/pusher-php-server/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Port\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/portphp/portphp/tests',
+        ),
+        'Port\\Steps\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/portphp/steps/src',
+        ),
+        'Port\\Excel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/portphp/excel/src',
+        ),
+        'Port\\Doctrine\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/portphp/doctrine/src',
+        ),
+        'Port\\Csv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/portphp/csv/src',
+        ),
+        'Port\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/portphp/portphp/src',
         ),
         'League\\Csv\\' => 
         array (
@@ -87,13 +163,32 @@ class ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
+        'Doctrine\\Common\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
+        ),
+        'Doctrine\\Common\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
         'Doctrine\\Common\\Annotations\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
         ),
+        'Doctrine\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+        ),
     );
 
     public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'PHPExcel' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
+            ),
+        ),
         'M' => 
         array (
             'Mailgun\\Tests' => 
@@ -111,7 +206,20 @@ class ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05
             array (
                 0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
             ),
+            'Doctrine\\Common\\Collections\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/collections/lib',
+            ),
         ),
+    );
+
+    public static $classMap = array (
+        'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
+        'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
+        'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
+        'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
+        'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
+        'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -120,6 +228,7 @@ class ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05
             $loader->prefixLengthsPsr4 = ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit320792ecc9a25e48b27e5e9cfcd2bf05::$classMap;
 
         }, null, ClassLoader::class);
     }

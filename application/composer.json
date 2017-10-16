@@ -6,6 +6,12 @@
         "league/csv": "^7.0",
         "mailgun/mailgun-php": "1.8.*",
         "zircote/swagger-php": "^2.0",
-        "pusher/pusher-php-server":"*"
+        "pusher/pusher-php-server":"*",
+        "portphp/portphp":"*",
+        "portphp/steps":"*",
+        "portphp/csv":"*",
+        "portphp/excel":"*",
+        "portphp/doctrine":"*"
+
     }
 }

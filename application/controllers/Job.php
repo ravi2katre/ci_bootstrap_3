@@ -10,10 +10,13 @@ class Job extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
-		//$this->load->library('job_scheduler');
+		$this->load->library('portphp');
 		$this->load->helper('array');	//This model loads the categories locally
 	}
-	
+
+	function csv_export(){
+	    $this->portphp->csv_export();
+    }
 
 
     public function import_frm()
