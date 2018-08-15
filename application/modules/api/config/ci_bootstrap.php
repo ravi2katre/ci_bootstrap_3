@@ -5,9 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------------
 | CI Bootstrap 3 Configuration
 | -------------------------------------------------------------------------
-| This file lets you define default values to be passed into views 
-| when calling MY_Controller's render() function. 
-| 
+| This file lets you define default values to be passed into views
+| when calling MY_Controller's render() function.
+|
 | See example and detailed explanation from:
 | 	/application/config/ci_bootstrap_example.php
 */
@@ -22,7 +22,7 @@ $config['ci_bootstrap'] = array(
 
 	// Default page title
 	'page_title' => '',
-	
+
 	// Default meta data
 	'meta_data'	=> array(
 		'author'		=> '',
@@ -45,7 +45,7 @@ $config['ci_bootstrap'] = array(
 			'assets/api/lib/jsoneditor.min.js',
 			'assets/api/lib/marked.js',
 			'assets/api/lib/swagger-oauth.js',
-			
+
 			// Some basic translations (uncomment translator.js and a language when needed)
 			//'assets/api/lang/translator.js',
 			//'assets/api/lang/en.js',
@@ -54,7 +54,7 @@ $config['ci_bootstrap'] = array(
 		'foot'	=> array(
 		),
 	),
-	
+
 	// Default stylesheets to embed at page head
 	'stylesheets' => array(
 		'screen' => array(

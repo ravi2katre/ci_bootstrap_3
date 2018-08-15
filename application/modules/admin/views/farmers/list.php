@@ -25,7 +25,7 @@
                         <input type="text" class="form-control" id="last_name">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label for="first_name" class=" control-label">Principal Name</label>
                     <div class="">
                         <input type="text" class="form-control" id="first_name">
@@ -445,7 +445,7 @@
                                 <span class="help-block"></span>
                             </div>
                         </div -->
-                        <input type="hidden" name="group_ids[]" value="<?php echo STUDENT; ?>">
+                        <input type="hidden" name="group_ids[]" value="<?php echo FARMER; ?>">
 
                     </div>
                 </form>

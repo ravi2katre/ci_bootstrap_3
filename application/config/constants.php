@@ -98,7 +98,7 @@ if (!(PHP_SAPI === 'cli' OR defined('STDIN')))
 	$base_url = $protocol.'://'.$_SERVER['HTTP_HOST'];
 	$base_url.= dirname($_SERVER['SCRIPT_NAME']);
 	define('BASE_URL', $base_url);
-	
+
 	// For API prefix in Swagger annotation (/application/modules/api/swagger/info.php)
 	define('API_PROTOCOL', $protocol);
 	define('API_HOST', $_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME']));
@@ -111,6 +111,6 @@ define('CI_BOOTSTRAP_VERSION',		'Build 20170324');	// will follow semantic versi
 //define('UPLOAD_COVER_PHOTO',	'assets/uploads/cover_photos');
 define('ADMINISTRATOR',1);
 define('MEMBER',2);
-define('SCHOOL',3);
-define('PARENT',4);
-define('STUDENT',5);
+define('EXECUTIVE',3);
+define('SUPPLIER',4);
+define('FARMER',5);

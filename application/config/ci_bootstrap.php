@@ -5,9 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------------
 | CI Bootstrap 3 Configuration
 | -------------------------------------------------------------------------
-| This file lets you define default values to be passed into views 
-| when calling MY_Controller's render() function. 
-| 
+| This file lets you define default values to be passed into views
+| when calling MY_Controller's render() function.
+|
 | See example and detailed explanation from:
 | 	/application/config/ci_bootstrap_example.php
 */
@@ -15,19 +15,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['ci_bootstrap'] = array(
 
 	// Site name
-	'site_name' => 'School Management',
+	'site_name' => 'ASF',
 
 	// Default page title prefix
 	'page_title_prefix' => '',
 
 	// Default page title
-	'page_title' => 'School Management',
+	'page_title' => 'ASF',
 
 	// Default meta data
 	'meta_data'	=> array(
-		'author'		=> 'School Management',
-		'description'	=> 'School Management',
-		'keywords'		=> 'School Management'
+		'author'		=> 'ASF',
+		'description'	=> 'ASF',
+		'keywords'		=> 'ASF'
 	),
 
 	// Default scripts to embed at page head or end
@@ -52,7 +52,7 @@ $config['ci_bootstrap'] = array(
 
 	// Default CSS class for <body> tag
 	'body_class' => '',
-	
+
 	// Multilingual settings
 	/*'languages' => array(
 		'default'		=> 'en',
@@ -100,7 +100,7 @@ $config['ci_bootstrap'] = array(
 		'from_email'		=> '',
 		'from_name'			=> '',
 		'subject_prefix'	=> '',
-		
+
 		// Mailgun HTTP API
 		'mailgun_api'		=> array(
 			'domain'			=> '',

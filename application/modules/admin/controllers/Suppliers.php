@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Students extends Admin_Controller{
+class Suppliers extends Admin_Controller{
     var $table = 'users';
     var $primary_key_field = 'id';
     var $model_name = 'Users_model';
@@ -16,9 +16,9 @@ class Students extends Admin_Controller{
       $this->add_script(BASE_URL.'assets/datatables/js/dataTables.bootstrap.js',true,'foot');
       $this->mViewData['primary_key_field'] = $this->primary_key_field;
 
-      $this->mViewData['columns'] = array('','id','first_name','middle_name','last_name','address','email','phone','phone2');
+      $this->mViewData['columns'] = array('','id','first_name','middle_name','last_name','phone','phone2','email','address');
       $this->{$this->model_name}->set_column($this->mViewData['columns']);
-      $this->{$this->model_name}->set_group_ids(array(STUDENT));
+      $this->{$this->model_name}->set_group_ids(array(SUPPLIER));
 
   }
 

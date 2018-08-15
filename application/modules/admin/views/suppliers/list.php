@@ -14,18 +14,18 @@
             <form id="form-filter" class="form-inline">
 
                 <div class="form-group">
-                    <label for="FirstName" class="control-label">Name</label>
+                    <label for="FirstName" class="control-label">First Name</label>
                     <div class="">
-                        <input type="text" class="form-control" id="company">
+                        <input type="text" class="form-control" id="first_name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="address" class="control-label">Address</label>
+                    <label for="address" class="control-label">Lirst Name</label>
                     <div class="">
-                        <input type="text" class="form-control" id="address">
+                        <input type="text" class="form-control" id="last_name">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label for="first_name" class=" control-label">Principal Name</label>
                     <div class="">
                         <input type="text" class="form-control" id="first_name">
@@ -37,12 +37,7 @@
                         <input type="text" class="form-control" id="phone">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="fax" class="control-label">Fax</label>
-                    <div class="">
-                        <input type="text" class="form-control" id="fax">
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label for="email" class="control-label">Email</label>
                     <div class="">
@@ -68,13 +63,13 @@
             <th><input type="checkbox" id="check-all"></th>
 
             <th>Id</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Principal Name</th>
-            <th>Contact Number</th>
-            <th>Fax</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Phone2</th>
             <th>Email</th>
-
+            <th>Address</th>
 
             <th>Action</th>
         </tr>
@@ -87,12 +82,13 @@
             <th></th>
 
             <th>Id</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Principal Name</th>
-            <th>Contact Number</th>
-            <th>Fax</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Phone2</th>
             <th>Email</th>
+            <th>Address</th>
 
 
             <th>Action</th>
@@ -190,14 +186,20 @@
             dataType: "JSON",
             success: function(data)
             {
-
                 $('[name="id"]').val(data.id);
-                $('[name="detail[company]"]').val(data.company);
-                $('[name="detail[first_name]"]').val(data.first_name);
-                $('[name="detail[fax]"]').val(data.fax);
-                $('[name="detail[phone]"]').val(data.phone);
-                $('[name="detail[address]"]').val(data.address);
-                $('[name="detail[email]"]').val(data.email);
+
+                <?php
+                foreach($columns as $val){
+                if(!empty($val) && $val != $primary_key_field){
+                ?>
+                $('[name="detail[<?php echo $val;?>]"]').val(data.<?php echo $val;?>);
+                <?php
+
+                }
+                }
+                ?>
+
+
 
                 $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
                 $('.modal-title').text('Edit'); // Set title to Bootstrap modal title
@@ -245,7 +247,7 @@
                 }
                 else
                 {       //select parent twice to select div form-group class and add has-error class
-                        $(".modal-body").find('.info_box').html('<div class="alert alert-danger fade in has-error">'+data.error_string+'</div>'); //select span help-block class set text error string
+                    $(".modal-body").find('.info_box').html('<div class="alert alert-danger fade in has-error">'+data.error_string+'</div>'); //select span help-block class set text error string
 
                 }
                 $('#btnSave').text('Save'); //change button text
@@ -363,9 +365,23 @@
                     <div class="form-body">
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">School Name</label>
+                            <label class="control-label col-md-3">First Name</label>
                             <div class="col-md-9">
-                                <input name="detail[company]" placeholder="School Name" class="form-control" type="text">
+                                <input name="detail[first_name]" placeholder="First Name" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Middle Name</label>
+                            <div class="col-md-9">
+                                <input name="detail[middle_name]" placeholder="Middle Name" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Last Name</label>
+                            <div class="col-md-9">
+                                <input name="detail[last_name]" placeholder="Last Name" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -376,13 +392,7 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Principal Name</label>
-                            <div class="col-md-9">
-                                <input name="detail[first_name]" placeholder="Principal Name" class="form-control" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-3">Contact Number</label>
                             <div class="col-md-9">
@@ -391,12 +401,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Fax</label>
+                            <label class="control-label col-md-3">Contact Number2</label>
                             <div class="col-md-9">
-                                <input name="detail[fax]" placeholder="Fax" class="form-control" type="text">
+                                <input name="detail[phone2]" placeholder="Contact Number2" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-3">Email/Username</label>
                             <div class="col-md-9">
@@ -424,17 +435,17 @@
                             <div class="col-md-9">
 
                                 <?php
-                                /*foreach($groups as $value){
-                                    echo '<div class="checkbox">';
-                                    echo '<label><input type="checkbox" name="group_ids[]"  value="'.$value->id.'"> '.$value->name."</label>";
-                                    echo '</div>';
-                                }*/
-                                ?>
+                        /*foreach($groups as $value){
+                            echo '<div class="checkbox">';
+                            echo '<label><input type="checkbox" name="group_ids[]"  value="'.$value->id.'"> '.$value->name."</label>";
+                            echo '</div>';
+                        }*/
+                        ?>
 
                                 <span class="help-block"></span>
                             </div>
                         </div -->
-                        <input type="hidden" name="group_ids[]" value="<?php echo SCHOOL; ?>">
+                        <input type="hidden" name="group_ids[]" value="<?php echo SUPPLIER; ?>">
 
                     </div>
                 </form>

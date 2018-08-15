@@ -5,9 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------------
 | CI Bootstrap 3 Configuration
 | -------------------------------------------------------------------------
-| This file lets you define default values to be passed into views 
-| when calling MY_Controller's render() function. 
-| 
+| This file lets you define default values to be passed into views
+| when calling MY_Controller's render() function.
+|
 | See example and detailed explanation from:
 | 	/application/config/ci_bootstrap_example.php
 */
@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['ci_bootstrap'] = array(
 
 	// Site name
-	'site_name' => 'Admin Panel',
+	'site_name' => 'ASF-Admin',
 
 	// Default page title prefix
 	'page_title_prefix' => '',
@@ -29,7 +29,7 @@ $config['ci_bootstrap'] = array(
 		'description'	=> '',
 		'keywords'		=> ''
 	),
-	
+
 	// Default scripts to embed at page head or end
 	'scripts' => array(
 		'head'	=> array(
@@ -52,7 +52,7 @@ $config['ci_bootstrap'] = array(
 
 	// Default CSS class for <body> tag
 	'body_class' => '',
-	
+
 	// Multilingual settings
 	'languages' => array(
 	),
@@ -120,9 +120,9 @@ $config['ci_bootstrap'] = array(
 	// AdminLTE settings
 	'adminlte' => array(
 		'body_class' => array(
-			'webmaster'	=> 'skin-red',
-			'admin'		=> 'skin-purple',
-			'manager'	=> 'skin-black',
+			'webmaster'	=> 'skin-purple',
+			'admin'		=> 'skin-black',
+			'manager'	=> 'skin-red',
 			'staff'		=> 'skin-blue',
 		)
 	),

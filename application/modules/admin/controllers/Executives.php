@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Schools extends Admin_Controller{
+class Executives extends Admin_Controller{
     var $table = 'users';
     var $primary_key_field = 'id';
     var $model_name = 'Users_model';
@@ -16,6 +16,10 @@ class Schools extends Admin_Controller{
       $this->add_script(BASE_URL.'assets/datatables/js/dataTables.bootstrap.js',true,'foot');
       $this->mViewData['primary_key_field'] = $this->primary_key_field;
 
+      $this->mViewData['columns'] = array('','id','first_name','middle_name','last_name','phone','phone2','email','address');
+      $this->{$this->model_name}->set_column($this->mViewData['columns']);
+      $this->{$this->model_name}->set_group_ids(array(EXECUTIVE));
+
   }
 
   public function index()
@@ -26,42 +30,40 @@ class Schools extends Admin_Controller{
       $this->render($this->mCtrler.'/list');
   }
 
-  public function ajax_list()
-  {
-      $this->mViewData['columns'] = $columns = array('','id','company','address','first_name','phone','fax','email');
-      $this->{$this->model_name}->set_column($columns);
-      $this->{$this->model_name}->set_group_ids(array(SCHOOL));
-      $list = $this->{$this->model_name}->get_datatables();
+    public function ajax_list()
+    {
 
-      $data = array();
-      $no = $this->input->post('start');
-      foreach ($list as $item) {
-          $no++;
-          $row = array();
-          $row[] = '<input type="checkbox" class="data-check" value="'.$item->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
+        $list = $this->{$this->model_name}->get_datatables();
 
-          foreach($columns as $val){
-              if(!empty($val)){
-                  $row[] = $item->$val;
-              }
-          }
+        $data = array();
+        $no = $this->input->post('start');
+        foreach ($list as $item) {
+            $no++;
+            $row = array();
+            $row[] = '<input type="checkbox" class="data-check" value="'.$item->{$this->primary_key_field}.'" onclick="showBottomDelete()"/>';
+
+            foreach($this->mViewData['columns'] as $val){
+                if(!empty($val)){
+                    $row[] = $item->$val;
+                }
+            }
 
 
-          //add html for action
-          $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+            //add html for action
+            $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                 <a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick="delete_row('."'".$item->{$this->primary_key_field}."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-          $data[] = $row;
-      }
-      $output = array(
-                      "draw" => $this->input->post('draw'),
-                      "recordsTotal" => $this->{$this->model_name}->count_all(),
-                      "recordsFiltered" => $this->{$this->model_name}->count_filtered(),
-                      "data" => $data,
-                      "last_query" => $this->db->last_query(),
-              );
-      //output to json format
-      $this->render_json($output);
-  }
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->{$this->model_name}->count_all(),
+            "recordsFiltered" => $this->{$this->model_name}->count_filtered(),
+            "data" => $data,
+            "last_query" => $this->db->last_query(),
+        );
+        //output to json format
+        $this->render_json($output);
+    }
 
   public function ajax_edit($id)
   {
@@ -126,8 +128,8 @@ class Schools extends Admin_Controller{
       $this->load->library('form_validation');
       $this->form_validation->set_error_delimiters("<p>", "</p>");
 
-      $this->form_validation->set_rules('detail[company]', 'company', 'required');
       $this->form_validation->set_rules('detail[first_name]', 'first_name', 'required');
+      $this->form_validation->set_rules('detail[last_name]', 'last_name', 'required');
       $this->form_validation->set_rules('detail[email]', 'Email', array('required', array('validate_username', function($email){
           //return false;
           $condition['id !='] = $this->input->post('id');

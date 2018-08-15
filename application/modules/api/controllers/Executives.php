@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Students extends API_Controller {
+class Executives extends API_Controller {
 
 	public function index()
 	{
@@ -25,16 +25,16 @@ class Students extends API_Controller {
     }
 
     /**
-     * @SWG\Get(path="/students/student",
-     *   tags={"students"},
-     *   summary="get student record",
+     * @SWG\Get(path="/executives/executive",
+     *   tags={"executives"},
+     *   summary="get executive record",
      *   description="",
-     *   operationId="student_get",
+     *   operationId="executive_get",
      *   produces={"application/xml", "application/json"},
      *   @SWG\Parameter(
      *     name="phone",
      *     in="query",
-     *     description="Phone No to get student details",
+     *     description="Phone No to get executive details",
      *     required=true,
      *     type="string"
      *   ),
@@ -56,7 +56,7 @@ class Students extends API_Controller {
      *     )
      * )
      */
-    public function student_get()
+    public function executive_get()
     {
         $output =array();
         $phone =  $this->input->get_post('phone');
@@ -64,9 +64,11 @@ class Students extends API_Controller {
         if(!empty($phone)){
             $condition['phone'] = $phone;
             $output = $this->Users_model->get_by_condition($condition);
+            //$output['last_query'] = $this->db->last_query();
             if(isset($output->id)){
                 $this->response($output,REST_Controller::HTTP_OK);
             }else{
+                $output['data'] = $output;
                 $output['status'] = false;
             }
         }
